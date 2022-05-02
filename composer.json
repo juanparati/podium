@@ -17,8 +17,8 @@
     "require": {
         "php": "^8.0",
         "guzzlehttp/guzzle": "^7.2",
-        "illuminate/support": "^v9.0",
-        "illuminate/cache": "^9.9",
+        "illuminate/support": "^v9.0.0",
+        "illuminate/cache": "^9.0.0",
         "psr/log": "^3.0"
     },
     "require-dev": {
