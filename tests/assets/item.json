@@ -1,0 +1,1144 @@
+{
+	"presence": null,
+	"app": {
+		"status": "active",
+		"sharefile_vault_url": null,
+		"name": "TestApp",
+		"space_id": 7909927,
+		"default_view_id": null,
+		"url_add": "https://podio.com/testprojectdk/project-management/apps/testapp/items/new",
+		"icon_id": 251,
+		"link_add": "https://podio.com/testprojectdk/project-management/apps/testapp/items/new",
+		"app_id": 27443515,
+		"current_revision": 6,
+		"is_default": false,
+		"item_name": "TestApp",
+		"link": "https://podio.com/testprojectdk/project-management/apps/testapp",
+		"url": "https://podio.com/testprojectdk/project-management/apps/testapp",
+		"url_label": "testapp",
+		"config": {
+			"item_name": "TestApp",
+			"icon_id": 251,
+			"type": "standard",
+			"name": "TestApp",
+			"icon": "251.png"
+		},
+		"item_accounting_info": {
+			"count": 9,
+			"limit": 500,
+			"percent": 1,
+			"org_id": 1820616
+		},
+		"icon": "251.png"
+	},
+	"user_ratings": {
+		"like": null
+	},
+	"created_on": "2022-04-25 10:56:17",
+	"like_count": 0,
+	"comments": [
+		{
+			"files": [],
+			"value": "test",
+			"rich_value": "test",
+			"rights": [
+				"view",
+				"rate"
+			],
+			"ref": {
+				"type": "item",
+				"id": 2078296577
+			},
+			"embed_file": null,
+			"comment_id": 977950917,
+			"created_via": {
+				"url": null,
+				"auth_client_id": 1,
+				"display": false,
+				"name": "Podio",
+				"id": 1
+			},
+			"created_by": {
+				"user_id": 1202702,
+				"name": "John Random",
+				"url": "https://podio.com/users/1202702",
+				"type": "user",
+				"image": null,
+				"avatar_type": "file",
+				"avatar": null,
+				"id": 1202702,
+				"avatar_id": null,
+				"last_seen_on": "2022-04-25 12:27:12"
+			},
+			"created_on": "2022-04-25 11:44:16",
+			"like_count": 0,
+			"last_edit_on": null,
+			"questions": [],
+			"embed": null,
+			"external_id": null,
+			"is_liked": false,
+			"user": {
+				"user_id": 1202702,
+				"name": "John Random",
+				"url": "https://podio.com/users/1202702",
+				"type": "user",
+				"image": null,
+				"avatar_type": "file",
+				"avatar": null,
+				"id": 1202702,
+				"avatar_id": null,
+				"last_seen_on": "2022-04-25 12:27:12"
+			}
+		}
+	],
+	"last_event_on": "2022-04-25 11:44:16",
+	"linked_account_data": null,
+	"sharefile_vault_folder_id": null,
+	"refs": [],
+	"app_item_id_formatted": "1",
+	"ratings": {
+		"like": {
+			"average": null,
+			"counts": {
+				"1": {
+					"total": 0,
+					"users": []
+				}
+			}
+		}
+	},
+	"subscribed": false,
+	"title": "This is TextField",
+	"participants": {},
+	"created_by": {
+		"user_id": 1202702,
+		"name": "John Random",
+		"url": "https://podio.com/users/1202702",
+		"type": "user",
+		"image": null,
+		"avatar_type": "file",
+		"avatar": null,
+		"id": 1202702,
+		"avatar_id": null,
+		"last_seen_on": "2022-04-25 12:27:12"
+	},
+	"priority": 2078296577.0,
+	"created_via": {
+		"url": null,
+		"auth_client_id": 1,
+		"display": false,
+		"name": "Podio",
+		"id": 1
+	},
+	"subscribed_count": 1,
+	"reminder": null,
+	"revisions": [
+		{
+			"item_revision_id": 8230778373,
+			"created_via": {
+				"url": null,
+				"auth_client_id": 1,
+				"display": false,
+				"name": "Podio",
+				"id": 1
+			},
+			"created_by": {
+				"user_id": 1202702,
+				"name": "John Random",
+				"url": "https://podio.com/users/1202702",
+				"type": "user",
+				"image": null,
+				"avatar_type": "file",
+				"avatar": null,
+				"id": 1202702,
+				"avatar_id": null,
+				"last_seen_on": "2022-04-25 12:27:12"
+			},
+			"created_on": "2022-04-25 11:44:13",
+			"user": {
+				"user_id": 1202702,
+				"name": "John Random",
+				"url": "https://podio.com/users/1202702",
+				"type": "user",
+				"image": null,
+				"avatar_type": "file",
+				"avatar": null,
+				"id": 1202702,
+				"avatar_id": null,
+				"last_seen_on": "2022-04-25 12:27:12"
+			},
+			"type": "update",
+			"revision": 14
+		},
+		{
+			"item_revision_id": 8230737784,
+			"created_via": {
+				"url": null,
+				"auth_client_id": 1,
+				"display": false,
+				"name": "Podio",
+				"id": 1
+			},
+			"created_by": {
+				"user_id": 1202702,
+				"name": "John Random",
+				"url": "https://podio.com/users/1202702",
+				"type": "user",
+				"image": null,
+				"avatar_type": "file",
+				"avatar": null,
+				"id": 1202702,
+				"avatar_id": null,
+				"last_seen_on": "2022-04-25 12:27:12"
+			},
+			"created_on": "2022-04-25 11:28:32",
+			"user": {
+				"user_id": 1202702,
+				"name": "John Random",
+				"url": "https://podio.com/users/1202702",
+				"type": "user",
+				"image": null,
+				"avatar_type": "file",
+				"avatar": null,
+				"id": 1202702,
+				"avatar_id": null,
+				"last_seen_on": "2022-04-25 12:27:12"
+			},
+			"type": "update",
+			"revision": 13
+		},
+		{
+			"item_revision_id": 8230737766,
+			"created_via": {
+				"url": null,
+				"auth_client_id": 1,
+				"display": false,
+				"name": "Podio",
+				"id": 1
+			},
+			"created_by": {
+				"user_id": 1202702,
+				"name": "John Random",
+				"url": "https://podio.com/users/1202702",
+				"type": "user",
+				"image": null,
+				"avatar_type": "file",
+				"avatar": null,
+				"id": 1202702,
+				"avatar_id": null,
+				"last_seen_on": "2022-04-25 12:27:12"
+			},
+			"created_on": "2022-04-25 11:28:31",
+			"user": {
+				"user_id": 1202702,
+				"name": "John Random",
+				"url": "https://podio.com/users/1202702",
+				"type": "user",
+				"image": null,
+				"avatar_type": "file",
+				"avatar": null,
+				"id": 1202702,
+				"avatar_id": null,
+				"last_seen_on": "2022-04-25 12:27:12"
+			},
+			"type": "update",
+			"revision": 12
+		},
+		{
+			"item_revision_id": 8230694903,
+			"created_via": {
+				"url": null,
+				"auth_client_id": 1,
+				"display": false,
+				"name": "Podio",
+				"id": 1
+			},
+			"created_by": {
+				"user_id": 1202702,
+				"name": "John Random",
+				"url": "https://podio.com/users/1202702",
+				"type": "user",
+				"image": null,
+				"avatar_type": "file",
+				"avatar": null,
+				"id": 1202702,
+				"avatar_id": null,
+				"last_seen_on": "2022-04-25 12:27:12"
+			},
+			"created_on": "2022-04-25 11:14:06",
+			"user": {
+				"user_id": 1202702,
+				"name": "John Random",
+				"url": "https://podio.com/users/1202702",
+				"type": "user",
+				"image": null,
+				"avatar_type": "file",
+				"avatar": null,
+				"id": 1202702,
+				"avatar_id": null,
+				"last_seen_on": "2022-04-25 12:27:12"
+			},
+			"type": "update",
+			"revision": 11
+		},
+		{
+			"item_revision_id": 8230694072,
+			"created_via": {
+				"url": null,
+				"auth_client_id": 1,
+				"display": false,
+				"name": "Podio",
+				"id": 1
+			},
+			"created_by": {
+				"user_id": 1202702,
+				"name": "John Random",
+				"url": "https://podio.com/users/1202702",
+				"type": "user",
+				"image": null,
+				"avatar_type": "file",
+				"avatar": null,
+				"id": 1202702,
+				"avatar_id": null,
+				"last_seen_on": "2022-04-25 12:27:12"
+			},
+			"created_on": "2022-04-25 11:13:45",
+			"user": {
+				"user_id": 1202702,
+				"name": "John Random",
+				"url": "https://podio.com/users/1202702",
+				"type": "user",
+				"image": null,
+				"avatar_type": "file",
+				"avatar": null,
+				"id": 1202702,
+				"avatar_id": null,
+				"last_seen_on": "2022-04-25 12:27:12"
+			},
+			"type": "update",
+			"revision": 10
+		}
+	],
+	"ref": null,
+	"is_liked": false,
+	"revision": 14,
+	"files": [
+		{
+			"mimetype": "image/png",
+			"perma_link": null,
+			"hosted_by": "podio",
+			"replaces": [],
+			"description": null,
+			"hosted_by_humanized_name": "Podio",
+			"presence": null,
+			"created_via": {
+				"url": null,
+				"auth_client_id": 1,
+				"display": false,
+				"name": "Podio",
+				"id": 1
+			},
+			"created_by": {
+				"user_id": 1202702,
+				"name": "John Random",
+				"url": "https://podio.com/users/1202702",
+				"type": "user",
+				"image": null,
+				"avatar_type": "file",
+				"avatar": null,
+				"id": 1202702,
+				"avatar_id": null,
+				"last_seen_on": "2022-04-25 12:27:12"
+			},
+			"thumbnail_link": "https://files.podio.com/1481619361",
+			"created_on": "2022-04-25 11:14:13",
+			"link": "https://files.podio.com/1481619361",
+			"file_id": 1481619361,
+			"rights": [
+				"view",
+				"update",
+				"download",
+				"delete"
+			],
+			"push": null,
+			"external_file_id": null,
+			"link_target": "_blank",
+			"size": 14551,
+			"name": "logopng.png"
+		}
+	],
+	"invite": null,
+	"tags": [],
+	"app_item_id": 1,
+	"link": "https://podio.com/testprojectdk/project-management/apps/testapp/items/1",
+	"item_id": 2078296577,
+	"sharefile_vault_url": null,
+	"recurrence": null,
+	"fields": [
+		{
+			"status": "active",
+			"type": "text",
+			"field_id": 238632570,
+			"label": "TextField",
+			"values": [
+				{
+					"value": "This is TextField"
+				}
+			],
+			"config": {
+				"default_value": null,
+				"unique": false,
+				"description": null,
+				"hidden_create_view_edit": false,
+				"required": false,
+				"mapping": null,
+				"label": "TextField",
+				"visible": true,
+				"delta": 0,
+				"hidden": false,
+				"settings": {
+					"format": "plain",
+					"size": "small"
+				}
+			},
+			"external_id": "title"
+		},
+		{
+			"status": "active",
+			"type": "text",
+			"field_id": 238632587,
+			"label": "MultiTextField",
+			"values": [
+				{
+					"value": "<p>This is multitext<br/></p>"
+				}
+			],
+			"config": {
+				"default_value": null,
+				"unique": false,
+				"description": null,
+				"hidden_create_view_edit": false,
+				"required": false,
+				"mapping": null,
+				"label": "MultiTextField",
+				"visible": true,
+				"delta": 1,
+				"hidden": false,
+				"settings": {
+					"format": "html",
+					"size": "large"
+				}
+			},
+			"external_id": "multitext"
+		},
+		{
+			"status": "active",
+			"type": "category",
+			"field_id": 238632584,
+			"label": "CategoryField",
+			"values": [
+				{
+					"value": {
+						"status": "active",
+						"text": "One",
+						"id": 1,
+						"color": "DCEBD8"
+					}
+				}
+			],
+			"config": {
+				"default_value": null,
+				"unique": false,
+				"description": null,
+				"hidden_create_view_edit": false,
+				"required": false,
+				"mapping": null,
+				"label": "CategoryField",
+				"visible": true,
+				"delta": 2,
+				"hidden": false,
+				"settings": {
+					"multiple": false,
+					"options": [
+						{
+							"status": "active",
+							"text": "One",
+							"id": 1,
+							"color": "DCEBD8"
+						},
+						{
+							"status": "active",
+							"text": "Two",
+							"id": 2,
+							"color": "DCEBD8"
+						},
+						{
+							"status": "active",
+							"text": "Three",
+							"id": 3,
+							"color": "DCEBD8"
+						}
+					],
+					"display": "inline"
+				}
+			},
+			"external_id": "categoryfield"
+		},
+		{
+			"status": "active",
+			"type": "category",
+			"field_id": 238633462,
+			"label": "MultipleCategoryField",
+			"values": [
+				{
+					"value": {
+						"status": "active",
+						"text": "One",
+						"id": 1,
+						"color": "DCEBD8"
+					}
+				},
+				{
+					"value": {
+						"status": "active",
+						"text": "Two",
+						"id": 2,
+						"color": "DCEBD8"
+					}
+				}
+			],
+			"config": {
+				"default_value": null,
+				"unique": false,
+				"description": null,
+				"hidden_create_view_edit": false,
+				"required": false,
+				"mapping": null,
+				"label": "MultipleCategoryField",
+				"visible": true,
+				"delta": 3,
+				"hidden": false,
+				"settings": {
+					"multiple": true,
+					"options": [
+						{
+							"status": "active",
+							"text": "One",
+							"id": 1,
+							"color": "DCEBD8"
+						},
+						{
+							"status": "active",
+							"text": "Two",
+							"id": 2,
+							"color": "DCEBD8"
+						},
+						{
+							"status": "active",
+							"text": "Three",
+							"id": 3,
+							"color": "DCEBD8"
+						}
+					],
+					"display": "inline"
+				}
+			},
+			"external_id": "multiplecategoryfield"
+		},
+		{
+			"status": "active",
+			"type": "date",
+			"field_id": 238632585,
+			"label": "DateField",
+			"values": [
+				{
+					"start_date_utc": "2022-04-01",
+					"end": "2022-04-03 00:00:00",
+					"end_date": "2022-04-03",
+					"end_date_utc": "2022-04-03",
+					"start_time_utc": null,
+					"start_time": null,
+					"start_date": "2022-04-01",
+					"start": "2022-04-01 00:00:00",
+					"end_time": null,
+					"end_time_utc": null,
+					"end_utc": "2022-04-03",
+					"start_utc": "2022-04-01"
+				}
+			],
+			"config": {
+				"default_value": null,
+				"unique": false,
+				"description": null,
+				"hidden_create_view_edit": false,
+				"required": false,
+				"mapping": null,
+				"label": "DateField",
+				"visible": true,
+				"delta": 4,
+				"hidden": false,
+				"settings": {
+					"color": "DCEBD8",
+					"calendar": false,
+					"end": "enabled",
+					"time": "disabled"
+				}
+			},
+			"external_id": "datefield"
+		},
+		{
+			"status": "active",
+			"type": "date",
+			"field_id": 238634987,
+			"label": "DateTimeField",
+			"values": [
+				{
+					"start": "2022-04-02 08:00:00",
+					"start_date_utc": "2022-04-02",
+					"start_time_utc": "08:00:00",
+					"start_time": "08:00:00",
+					"start_utc": "2022-04-02 08:00:00",
+					"start_date": "2022-04-02"
+				}
+			],
+			"config": {
+				"default_value": null,
+				"unique": false,
+				"description": null,
+				"hidden_create_view_edit": false,
+				"required": false,
+				"mapping": null,
+				"label": "DateTimeField",
+				"visible": true,
+				"delta": 5,
+				"hidden": false,
+				"settings": {
+					"color": "DCEBD8",
+					"calendar": false,
+					"end": "disabled",
+					"time": "required"
+				}
+			},
+			"external_id": "datetimefield"
+		},
+		{
+			"status": "active",
+			"type": "contact",
+			"field_id": 238633251,
+			"label": "MemberField",
+			"values": [
+				{
+					"value": {
+						"user_id": 1202702,
+						"space_id": null,
+						"rights": null,
+						"type": "user",
+						"image": null,
+						"profile_id": 206679383,
+						"org_id": null,
+						"link": "https://podio.com/users/1202702",
+						"mail": [
+							"foo@example.net"
+						],
+						"external_id": null,
+						"last_seen_on": "2022-04-25 12:27:12",
+						"name": "John Random"
+					}
+				}
+			],
+			"config": {
+				"default_value": null,
+				"unique": false,
+				"description": null,
+				"hidden_create_view_edit": false,
+				"required": false,
+				"mapping": null,
+				"label": "MemberField",
+				"visible": true,
+				"delta": 7,
+				"hidden": false,
+				"settings": {
+					"type": "space_users",
+					"valid_types": [
+						"user"
+					]
+				}
+			},
+			"external_id": "memberfield"
+		},
+		{
+			"status": "active",
+			"type": "phone",
+			"field_id": 238633252,
+			"label": "PhoneField",
+			"values": [
+				{
+					"type": "work",
+					"value": "1234"
+				},
+				{
+					"type": "home",
+					"value": "4321"
+				}
+			],
+			"config": {
+				"default_value": null,
+				"unique": false,
+				"description": null,
+				"hidden_create_view_edit": false,
+				"required": false,
+				"mapping": null,
+				"label": "PhoneField",
+				"visible": true,
+				"delta": 8,
+				"hidden": false,
+				"settings": {
+					"call_link_scheme": "callto",
+					"possible_types": [
+						"home",
+						"main",
+						"mobile",
+						"other",
+						"private_fax",
+						"work",
+						"work_fax"
+					]
+				}
+			},
+			"external_id": "phonefield"
+		},
+		{
+			"status": "active",
+			"type": "email",
+			"field_id": 238633253,
+			"label": "EmailField",
+			"values": [
+				{
+					"type": "work",
+					"value": "foo@bar.com"
+				},
+				{
+					"type": "home",
+					"value": "bar@foo.com"
+				}
+			],
+			"config": {
+				"default_value": null,
+				"unique": false,
+				"description": null,
+				"hidden_create_view_edit": false,
+				"required": false,
+				"mapping": null,
+				"label": "EmailField",
+				"visible": true,
+				"delta": 9,
+				"hidden": false,
+				"settings": {
+					"include_in_bcc": false,
+					"include_in_cc": false,
+					"possible_types": [
+						"home",
+						"other",
+						"work"
+					]
+				}
+			},
+			"external_id": "emailfield"
+		},
+		{
+			"status": "active",
+			"type": "number",
+			"field_id": 238633254,
+			"label": "NumberField",
+			"values": [
+				{
+					"value": "12333.0000"
+				}
+			],
+			"config": {
+				"default_value": null,
+				"unique": false,
+				"description": null,
+				"hidden_create_view_edit": false,
+				"required": false,
+				"mapping": null,
+				"label": "NumberField",
+				"visible": true,
+				"delta": 10,
+				"hidden": false,
+				"settings": {
+					"decimals": 0
+				}
+			},
+			"external_id": "numberfield"
+		},
+		{
+			"status": "active",
+			"type": "embed",
+			"field_id": 238633255,
+			"label": "LinkField",
+			"values": [
+				{
+					"embed": {
+						"embed_id": 1007966592,
+						"embed_html": null,
+						"description": "Search the world's information, including webpages, images, videos and more. Google has many special features to help you find exactly what you're looking for.",
+						"original_url": "https://google.com",
+						"url": "https://google.com",
+						"hostname": "google.com",
+						"embed_height": null,
+						"resolved_url": "https://google.com",
+						"title": "Google",
+						"type": "link",
+						"embed_width": null
+					},
+					"file": {
+						"hosted_by": "podio",
+						"hosted_by_humanized_name": "Podio",
+						"thumbnail_link": "https://files.podio.com/1481618998",
+						"link": "https://files.podio.com/1481618998",
+						"file_id": 1481618998,
+						"external_file_id": null,
+						"link_target": "_blank"
+					}
+				},
+				{
+					"embed": {
+						"embed_id": 1007966957,
+						"embed_html": null,
+						"description": "The Internet privacy company that empowers you to seamlessly take control of your personal information online, without any tradeoffs.",
+						"original_url": "https://duckduckgo.com",
+						"url": "https://duckduckgo.com",
+						"hostname": "duckduckgo.com",
+						"embed_height": null,
+						"resolved_url": "https://duckduckgo.com",
+						"title": "DuckDuckGo - Privacy, simplified.",
+						"type": "link",
+						"embed_width": null
+					},
+					"file": {
+						"hosted_by": "podio",
+						"hosted_by_humanized_name": "Podio",
+						"thumbnail_link": "https://files.podio.com/1481619050",
+						"link": "https://files.podio.com/1481619050",
+						"file_id": 1481619050,
+						"external_file_id": null,
+						"link_target": "_blank"
+					}
+				}
+			],
+			"config": {
+				"default_value": null,
+				"unique": false,
+				"description": null,
+				"hidden_create_view_edit": false,
+				"required": false,
+				"mapping": null,
+				"label": "LinkField",
+				"visible": true,
+				"delta": 11,
+				"hidden": false,
+				"settings": null
+			},
+			"external_id": "linkfield"
+		},
+		{
+			"status": "active",
+			"type": "image",
+			"field_id": 238633256,
+			"label": "ImageField",
+			"values": [
+				{
+					"value": {
+						"mimetype": "image/png",
+						"perma_link": null,
+						"hosted_by": "podio",
+						"description": null,
+						"hosted_by_humanized_name": "Podio",
+						"size": 14551,
+						"thumbnail_link": "https://files.podio.com/1481619120",
+						"link": "https://files.podio.com/1481619120",
+						"file_id": 1481619120,
+						"external_file_id": null,
+						"link_target": "_blank",
+						"name": "logopng.png"
+					}
+				}
+			],
+			"config": {
+				"default_value": null,
+				"unique": false,
+				"description": "Supported image types: .jpg .gif .png",
+				"hidden_create_view_edit": false,
+				"required": false,
+				"mapping": null,
+				"label": "ImageField",
+				"visible": true,
+				"delta": 12,
+				"hidden": false,
+				"settings": {
+					"allowed_mimetypes": [
+						"image/png"
+					]
+				}
+			},
+			"external_id": "imagefield"
+		},
+		{
+			"status": "active",
+			"type": "money",
+			"field_id": 238633257,
+			"label": "MoneyField",
+			"values": [
+				{
+					"currency": "DKK",
+					"value": "1233.0000"
+				}
+			],
+			"config": {
+				"default_value": null,
+				"unique": false,
+				"description": null,
+				"hidden_create_view_edit": false,
+				"required": false,
+				"mapping": null,
+				"label": "MoneyField",
+				"visible": true,
+				"delta": 13,
+				"hidden": false,
+				"settings": {
+					"allowed_currencies": [
+						"DKK",
+						"USD"
+					]
+				}
+			},
+			"external_id": "moneyfield"
+		},
+		{
+			"status": "active",
+			"type": "calculation",
+			"field_id": 238633259,
+			"label": "CalculationField",
+			"values": [
+				{
+					"value": "This is TextField"
+				}
+			],
+			"config": {
+				"default_value": null,
+				"unique": false,
+				"description": null,
+				"hidden_create_view_edit": false,
+				"required": false,
+				"mapping": null,
+				"label": "CalculationField",
+				"visible": true,
+				"delta": 15,
+				"hidden": false,
+				"settings": {
+					"script": "@[TextField](field_238632570)",
+					"color": null,
+					"expression": null,
+					"time": null,
+					"calendar": null,
+					"decimals": null,
+					"return_type": "text",
+					"unit": null
+				}
+			},
+			"external_id": "calculationfield"
+		},
+		{
+			"status": "active",
+			"type": "location",
+			"field_id": 238633260,
+			"label": "LocationField",
+			"values": [
+				{
+					"city": "Aarhus",
+					"map_in_sync": true,
+					"country": "Denmark",
+					"formatted": "Aarhus, Denmark",
+					"value": "Aarhus, Denmark",
+					"lat": 56.162939,
+					"lng": 10.203921
+				}
+			],
+			"config": {
+				"default_value": null,
+				"unique": false,
+				"description": null,
+				"hidden_create_view_edit": false,
+				"required": false,
+				"mapping": null,
+				"label": "LocationField",
+				"visible": true,
+				"delta": 16,
+				"hidden": false,
+				"settings": {
+					"structured": false,
+					"has_map": false
+				}
+			},
+			"external_id": "locationfield"
+		},
+		{
+			"status": "active",
+			"type": "location",
+			"field_id": 238633261,
+			"label": "MultipleLocationField",
+			"values": [
+				{
+					"city": "Aarhus",
+					"map_in_sync": true,
+					"country": "Denmark",
+					"formatted": "Aarhus, Denmark",
+					"value": "Aarhus, Denmark",
+					"lat": 56.162939,
+					"lng": 10.203921
+				}
+			],
+			"config": {
+				"default_value": null,
+				"unique": false,
+				"description": null,
+				"hidden_create_view_edit": false,
+				"required": false,
+				"mapping": null,
+				"label": "MultipleLocationField",
+				"visible": true,
+				"delta": 17,
+				"hidden": false,
+				"settings": {
+					"structured": true,
+					"has_map": false
+				}
+			},
+			"external_id": "multiplelocationfield"
+		},
+		{
+			"status": "active",
+			"type": "duration",
+			"field_id": 238633262,
+			"label": "DurationField",
+			"values": [
+				{
+					"value": 36610
+				}
+			],
+			"config": {
+				"default_value": null,
+				"unique": false,
+				"description": null,
+				"hidden_create_view_edit": false,
+				"required": false,
+				"mapping": null,
+				"label": "DurationField",
+				"visible": true,
+				"delta": 18,
+				"hidden": false,
+				"settings": {
+					"fields": [
+						"hours",
+						"minutes",
+						"seconds"
+					]
+				}
+			},
+			"external_id": "durationfield"
+		}
+	],
+	"rights": [
+		"update",
+		"view",
+		"add_file",
+		"subscribe",
+		"add_conversation",
+		"comment",
+		"add_task",
+		"rate"
+	],
+	"initial_revision": {
+		"item_revision_id": 8230648997,
+		"created_via": {
+			"url": null,
+			"auth_client_id": 1,
+			"display": false,
+			"name": "Podio",
+			"id": 1
+		},
+		"created_by": {
+			"user_id": 1202702,
+			"name": "John Random",
+			"url": "https://podio.com/users/1202702",
+			"type": "user",
+			"image": null,
+			"avatar_type": "file",
+			"avatar": null,
+			"id": 1202702,
+			"avatar_id": null,
+			"last_seen_on": "2022-04-25 12:27:12"
+		},
+		"created_on": "2022-04-25 10:56:17",
+		"user": {
+			"user_id": 1202702,
+			"name": "John Random",
+			"url": "https://podio.com/users/1202702",
+			"type": "user",
+			"image": null,
+			"avatar_type": "file",
+			"avatar": null,
+			"id": 1202702,
+			"avatar_id": null,
+			"last_seen_on": "2022-04-25 12:27:12"
+		},
+		"type": "creation",
+		"revision": 0
+	},
+	"current_revision": {
+		"item_revision_id": 8230778373,
+		"created_via": {
+			"url": null,
+			"auth_client_id": 1,
+			"display": false,
+			"name": "Podio",
+			"id": 1
+		},
+		"created_by": {
+			"user_id": 1202702,
+			"name": "John Random",
+			"url": "https://podio.com/users/1202702",
+			"type": "user",
+			"image": null,
+			"avatar_type": "file",
+			"avatar": null,
+			"id": 1202702,
+			"avatar_id": null,
+			"last_seen_on": "2022-04-25 12:27:12"
+		},
+		"created_on": "2022-04-25 11:44:13",
+		"user": {
+			"user_id": 1202702,
+			"name": "John Random",
+			"url": "https://podio.com/users/1202702",
+			"type": "user",
+			"image": null,
+			"avatar_type": "file",
+			"avatar": null,
+			"id": 1202702,
+			"avatar_id": null,
+			"last_seen_on": "2022-04-25 12:27:12"
+		},
+		"type": "update",
+		"revision": 14
+	},
+	"linked_account_id": null,
+	"push": {
+		"timestamp": 1650960814,
+		"expires_in": 21600,
+		"channel": "/item/2078296577",
+		"signature": "64f202dbcab08937fff1bfcd2f52a814cd0d1059"
+	},
+	"external_id": null
+}
