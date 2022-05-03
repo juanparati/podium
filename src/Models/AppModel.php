@@ -5,7 +5,6 @@ use Juanparati\Podium\Models\Generics\BoolGenericType;
 use Juanparati\Podium\Models\Generics\IntGenericType;
 use Juanparati\Podium\Models\Generics\RawGenericType;
 use Juanparati\Podium\Models\Generics\StringGenericType;
-use Juanparati\Podium\Podium;
 use Juanparati\Podium\Requests\AppRequest;
 use Juanparati\Podium\Requests\RequestBase;
 
