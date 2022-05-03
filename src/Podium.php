@@ -3,10 +3,8 @@
 namespace Juanparati\Podium;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\InvalidArgumentException;
 use GuzzleHttp\RequestOptions;
-use Illuminate\Cache\ApcStore;
-use Illuminate\Cache\ApcWrapper;
+use Illuminate\Cache\ArrayStore;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Carbon;
 use Juanparati\Podium\Auths\Authenticator;
@@ -85,7 +83,7 @@ class Podium
         string           $baseUri = 'https://api.podio.com/'
     )
     {
-        $this->cache = $cache ?: new ApcStore(new ApcWrapper(), 'podium:' . $this->session);
+        $this->cache = $cache ?: new ArrayStore(true);
         $this->logger = $logger ?: new NullLogger();
 
         $this->httpClient = new Client([

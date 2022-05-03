@@ -6,6 +6,8 @@ use Juanparati\Podium\Models\Generics\IntGenericType;
 use Juanparati\Podium\Models\Generics\RawGenericType;
 use Juanparati\Podium\Models\Generics\StringGenericType;
 use Juanparati\Podium\Podium;
+use Juanparati\Podium\Requests\AppRequest;
+use Juanparati\Podium\Requests\RequestBase;
 
 /**
  * @see https://developers.podio.com/doc/applications
@@ -42,13 +44,20 @@ class AppModel extends ModelBase
         $this->registerProp('current_revision', IntGenericType::class);
         $this->registerProp('item_accounting_info', RawGenericType::class);
 
-
-
-
         $this->registerRelation('fields', AppFieldModel::class, static::RELATION_MANY);
         $this->registerRelation('integration', IntegrationModel::class);
 
         // When app is returned as part of large collection (e.g. for stream), some config properties is moved to the main object
+    }
 
+
+    /**
+     * App requests collection.
+     *
+     * @return RequestBase
+     */
+    public function request(): RequestBase
+    {
+        return new AppRequest($this->podium);
     }
 }
