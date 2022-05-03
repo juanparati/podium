@@ -264,11 +264,6 @@ class ItemFieldModel extends ModelBase
         return $this->__options[static::OPTION_KEY_AS];
     }
 
-    public function __set(string $prop, $value): void
-    {
-        echo "ff";
-    }
-
 
     /**
      * Decode key in a custom way.

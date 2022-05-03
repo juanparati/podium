@@ -5,7 +5,7 @@ namespace Juanparati\Podium\Requests;
 use Juanparati\Podium\Models\ItemFilterModel;
 use Juanparati\Podium\Models\ItemModel;
 
-class ItemsRequest extends RequestBase
+class ItemRequest extends RequestBase
 {
 
     /**

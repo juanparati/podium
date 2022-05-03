@@ -3,6 +3,7 @@
 namespace Juanparati\Podium\Providers;
 
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 use Juanparati\Podium\Auths\AppAuth;
 use Juanparati\Podium\Podium;
@@ -38,16 +39,17 @@ class PodiumProvider extends ServiceProvider
         );
 
 
-        $this->app->bind(Podium::class, function(string $session) {
-            $podiumConf = config('podium');
-            $podiumSession = $podiumConf['sessions'][$session];
+        $this->app->bind(Podium::class, function($app, array $params) {
+            $podiumConf = $app->make('config')->get('podium');
+            $session = $params['session'] ?? 'default';
+            $podiumSession = is_array($session) ? $session : $podiumConf['sessions'][$session];
 
             $podium =  new Podium(
                 $session,
                 $podiumSession['client_id'],
                 $podiumSession['client_secret'],
                 Cache::store($podiumConf['cache']['store'])->getStore(),
-                $podiumConf['cache']['prefix'] ?? 'podium:'
+                Log::channel($podiumConf['log']['channel'])
             );
 
             $auth = match ($podiumSession['grant_type']) {

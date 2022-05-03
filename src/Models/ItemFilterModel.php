@@ -3,7 +3,7 @@
 namespace Juanparati\Podium\Models;
 
 use Juanparati\Podium\Models\Generics\IntGenericType;
-use Juanparati\Podium\Requests\ItemsRequest;
+use Juanparati\Podium\Requests\ItemRequest;
 use Juanparati\Podium\Requests\RequestBase;
 
 class ItemFilterModel extends ModelBase
@@ -174,11 +174,11 @@ class ItemFilterModel extends ModelBase
     /**
      * Item request.
      *
-     * @return ItemsRequest
+     * @return ItemRequest
      */
     public function request(): RequestBase
     {
-        return new ItemsRequest($this->podium);
+        return new ItemRequest($this->podium);
     }
 
 
