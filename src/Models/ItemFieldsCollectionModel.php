@@ -15,8 +15,18 @@ class ItemFieldsCollectionModel
     public function __construct(protected array $fields) {}
 
 
+    public function decodeValue() : array {
+        $data = [];
+
+        foreach (array_keys($this->fields) as $key)
+            $data[$key] = $this->{$key};
+
+        return $data;
+    }
+
+
     public function __get(string $field) {
-        return isset($this->fields[$field]) ?  $this->fields[$field]->decodeValue()['values'] : null;
+        return isset($this->fields[$field]) ? $this->fields[$field]->decodeValue()['values'] : null;
     }
 
 
