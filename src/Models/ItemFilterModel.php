@@ -58,7 +58,7 @@ class ItemFilterModel extends ModelBase
     }
 
     public function setSortDesc(bool $sortDesc) : static {
-        $this->requestBody['sort_by'] = $sortDesc;
+        $this->requestBody['sort_desc'] = $sortDesc;
 
         return $this;
     }

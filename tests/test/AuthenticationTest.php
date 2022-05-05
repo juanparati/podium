@@ -27,6 +27,7 @@ class AuthenticationTest extends PodiumTestBase
 
         $itemFilter = (new ItemFilterModel([], static::$client))
             ->setLimit(2)
+            ->setSortDesc(true)
             ->filter(static::$credentials->app_id);
 
         foreach ($itemFilter->items() as $item) {
