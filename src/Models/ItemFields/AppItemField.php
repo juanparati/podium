@@ -2,9 +2,10 @@
 
 namespace Juanparati\Podium\Models\ItemFields;
 
-class ImageItemField extends ItemFieldBase
+class AppItemField extends ItemFieldBase
 {
-    public function decodeValue(): ?array
+
+    function decodeValue(): mixed
     {
         return $this->value['value'] ?? null;
     }

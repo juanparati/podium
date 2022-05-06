@@ -21,11 +21,12 @@ class ServerSideAuth extends AuthBase
 
 
     /**
-     * Authorization code.
+     * Refresh token.
      *
      * @var string|null
      */
-    private ?string $authCode = null;
+    protected ?string $authCode = null;
+
 
 
     /**
@@ -43,26 +44,10 @@ class ServerSideAuth extends AuthBase
 
 
 
-    /**
-     * Set the authorization code.
-     *
-     * @param string $authCode
-     * @return $this
-     */
-    public function setAuthCode(string $authCode) : static {
+    public function setAuthCode(string $authCode) {
         $this->authCode = $authCode;
-
-        return $this;
     }
 
-    /**
-     * Get authorization code.
-     *
-     * @return string|null
-     */
-    public function getAuthCode() : ?string {
-        return $this->authCode;
-    }
 
 
     /**
@@ -74,18 +59,48 @@ class ServerSideAuth extends AuthBase
      */
     public function getAuthentication(): array
     {
-        $authCode = $this->getAuthCode();
 
-        if (!$authCode) {
+        if (!$this->authCode) {
             $this->performAuthorization();
+            return [];
         }
-
 
         $response = $this->httpClient->post($this->route, [
             'grant_type'    => 'authorization_code',
             'client_id'     => $this->clientId,
             'client_secret' => $this->clientSecret,
             'code'          => $this->getAuthCode(),
+            'redirect_uri'  => $this->redirectUrl,
+        ]);
+
+        if ($response->getStatusCode() !== 200) {
+            throw new AuthenticationException('Unable to obtain access token');
+        }
+
+        $auth = json_decode($response->getBody(), true);
+
+        if (JSON_ERROR_NONE !== json_last_error())
+            throw new AuthenticationException(json_last_error_msg());
+
+        return $auth;
+    }
+
+
+    /**
+     * Obtain access code.
+     *
+     * @param string $authCode
+     * @return array
+     * @throws AuthenticationException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function obtainAccessToken(string $authCode) : array {
+
+        $response = $this->httpClient->post($this->route, [
+            'grant_type'    => 'authorization_code',
+            'client_id'     => $this->clientId,
+            'client_secret' => $this->clientSecret,
+            'code'          => $authCode,
             'redirect_uri'  => $this->redirectUrl,
         ]);
 
@@ -152,8 +167,9 @@ class ServerSideAuth extends AuthBase
             die("Unable to obtain code");
         }
 
-        echo "🔑 Congratulations, the authorization code was retrieved: <br />";
-        echo '<pre><code>' . $_GET['code'] . '</code></pre>';
-        echo "<p>Save the authorization token in your Podium configuration file and uset it with the 'setAuthCode' method</p>";
+        $authCode = trim($_GET['code']);
+
+        echo "🔑 Congratulations, the authorization code was retrieved!<br />";
+        echo "<pre><code>$authCode</code></pre>";
     }
 }

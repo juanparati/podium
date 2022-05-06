@@ -7,6 +7,7 @@ use Juanparati\Podium\Models\Generics\IntGenericType;
 use Juanparati\Podium\Models\Generics\RawGenericType;
 use Juanparati\Podium\Models\Generics\StringGenericType;
 use Juanparati\Podium\Models\Generics\UndefinedGenericType;
+use Juanparati\Podium\Models\ItemFields\AppItemField;
 use Juanparati\Podium\Models\ItemFields\CalculationItemField;
 use Juanparati\Podium\Models\ItemFields\CategoryItemField;
 use Juanparati\Podium\Models\ItemFields\DateItemField;
@@ -148,6 +149,18 @@ class ItemFieldModel extends ModelBase
                             ->fillProps($originalValues[0] ?? ['value' => $config['default_value']]);
 
                         break;
+
+                    case 'app':
+                        // @ToDo: Refactor AppItemModel in the future
+                        $this->__props['values']['type'] = AppItemField::class;
+                        $this->__props['values']['isArray'] = true;
+                        $this->__props['values']['value'] = array_map(
+                            fn($image) => (new AppItemField())->setConfig($config)->fillProps($image),
+                            $originalValues
+                        );
+
+                        break;
+
 
                     case 'embed':
                         $this->__props['values']['type'] = EmbedFileModel::class;
