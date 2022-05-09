@@ -262,6 +262,39 @@ class ItemFieldModel extends ModelBase
     }
 
 
+    /**
+     * Set values in raw format.
+     *
+     * @param mixed $values
+     * @return void
+     */
+    public function setRawValue(mixed $values) : void {
+
+        $type = $this->__props['values']['type'];
+        $config = $this->__props['config']['value']->getProps();
+
+        if (is_array($values)) {
+            $this->__props['values']['value'] = [];
+
+            foreach ($values as $value) {
+                if (!($value instanceof ItemFieldContract)) {
+                    $this->__props['values']['value'][] = (new $type())
+                        ->setConfig($config)
+                        ->encodeValue($value);
+                }
+            }
+        } else {
+            if (!($values instanceof ItemFieldContract)) {
+                $values = (new $type())
+                    ->setConfig($config)
+                    ->encodeValue($values);
+            }
+
+            $this->__props['values']['value'] = $values;
+        }
+
+    }
+
 
     /**
      * Set/Get key resolution.

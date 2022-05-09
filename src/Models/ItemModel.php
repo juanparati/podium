@@ -2,6 +2,7 @@
 
 namespace Juanparati\Podium\Models;
 
+use Illuminate\Support\Arr;
 use Juanparati\Podium\Models\Generics\BoolGenericType;
 use Juanparati\Podium\Models\Generics\DatetimeGenericType;
 use Juanparati\Podium\Models\Generics\FloatGenericType;
@@ -96,5 +97,13 @@ class ItemModel extends ModelBase
     public function request(): RequestBase
     {
         return new ItemRequest($this->podium);
+    }
+
+
+    public function update() {
+        $this->request()->update(
+            $this->item_id,
+            Arr::except($this->decodeValue(), 'item_id'),
+        );
     }
 }

@@ -4,6 +4,7 @@ namespace Juanparati\Podium\Tests\test;
 
 use Juanparati\Podium\Models\ItemFieldModel;
 use Juanparati\Podium\Models\ItemFields\DateItemField;
+use Juanparati\Podium\Models\ItemFields\TextItemField;
 use Juanparati\Podium\Models\ItemModel;
 use PHPUnit\Framework\TestCase;
 
@@ -51,6 +52,23 @@ class ItemModelTest extends TestCase
         $this->assertArrayHasKey('238632570', $decoded['fields']);
         $this->assertEquals(1648886400, $decoded['fields']['238634987']['values']['start']);
         $this->assertNull($decoded['fields']['238634987']['values']['end']);
+    }
+
+
+    public function testItemModelMutability() {
+        $rawItem = json_decode(file_get_contents(__DIR__ . '/../assets/item.json'), true);
+
+        $model = (new ItemModel($rawItem))
+            ->setOptions([
+                ItemFieldModel::class => [
+                    ItemFieldModel::OPTION_KEY_AS => ItemFieldModel::KEY_AS_FIELD_ID
+                ]
+            ]);
+
+        $model->fields->{'238632570'} = 'test_1';
+        $fields = $model->fields->toArray();
+
+        $this->assertEquals([['value' => 'test_1']], $fields[238632570]->originalValues()['values']);
     }
 
 

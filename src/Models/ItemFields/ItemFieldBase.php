@@ -2,6 +2,7 @@
 
 namespace Juanparati\Podium\Models\ItemFields;
 
+use Illuminate\Support\Arr;
 use Juanparati\Podium\Models\Generics\GenericTypeBase;
 
 abstract class ItemFieldBase extends GenericTypeBase implements ItemFieldContract {
@@ -45,11 +46,12 @@ abstract class ItemFieldBase extends GenericTypeBase implements ItemFieldContrac
     /**
      * Get field config.
      *
-     * @param array $config
+     * @param string|null $key
+     * @param null $default
      * @return array
      */
-    public function getConfig(array $config) : array {
-        return $this->config;
+    public function getConfig(?string $key = null, $default = null) : array {
+        return Arr::get($this->config, $key, $default);
     }
 
 

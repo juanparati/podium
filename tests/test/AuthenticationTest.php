@@ -5,6 +5,7 @@ namespace Juanparati\Podium\Tests\test;
 use Juanparati\Podium\Auths\AppAuth;
 use Juanparati\Podium\Models\ItemFilterModel;
 use Juanparati\Podium\Models\ItemModel;
+use Juanparati\Podium\Requests\ItemRequest;
 use Juanparati\Podium\Tests\PodiumTestBase;
 
 class AuthenticationTest extends PodiumTestBase
@@ -25,6 +26,11 @@ class AuthenticationTest extends PodiumTestBase
         $this->assertTrue(true);
 
 
+        $model = (new ItemRequest(static::$client))->get(2078296577);
+        //$model->fields->update()
+
+
+        /*
         $itemFilter = (new ItemFilterModel([], static::$client))
             ->setLimit(2)
             ->setSortDesc(true)
@@ -33,6 +39,7 @@ class AuthenticationTest extends PodiumTestBase
         foreach ($itemFilter->items() as $item) {
             echo $item->fields->title . PHP_EOL;
         }
+        */
 
         /*
         $item = new ItemModel([], static::$client);
