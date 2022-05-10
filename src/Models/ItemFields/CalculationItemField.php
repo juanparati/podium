@@ -16,4 +16,9 @@ class CalculationItemField extends ItemFieldBase
     {
         throw new DataIntegrityException('Calculation fields are read-only');
     }
+
+    public function decodeValueForPost(): mixed
+    {
+        return null;
+    }
 }

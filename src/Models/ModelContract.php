@@ -58,4 +58,12 @@ interface ModelContract
      * @return mixed
      */
     public function __get(string $prop) : mixed;
+
+
+    /**
+     * Reset model.
+     *
+     * @return void
+     */
+    public function reset() : void;
 }

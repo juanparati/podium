@@ -4,7 +4,6 @@ namespace Juanparati\Podium\Tests\test;
 
 use Juanparati\Podium\Models\ItemFieldModel;
 use Juanparati\Podium\Models\ItemFields\DateItemField;
-use Juanparati\Podium\Models\ItemFields\TextItemField;
 use Juanparati\Podium\Models\ItemModel;
 use PHPUnit\Framework\TestCase;
 
@@ -66,6 +65,7 @@ class ItemModelTest extends TestCase
             ]);
 
         $model->fields->{'238632570'} = 'test_1';
+        $model->fields->{'238632584'} = ['Two'];
         $fields = $model->fields->toArray();
 
         $this->assertEquals([['value' => 'test_1']], $fields[238632570]->originalValues()['values']);

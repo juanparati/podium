@@ -15,4 +15,10 @@ class EmbedFileModel extends ModelBase
         $this->registerProp('embed', EmbedModel::class);
         $this->registerProp('file', FileModel::class);
     }
+
+
+    public function decodeValueForPost(): mixed
+    {
+        return $this->embed->embed_id ?? null;
+    }
 }

@@ -15,14 +15,26 @@ class ItemRequest extends RequestBase
      * @param array $attr
      * @param bool $silent
      * @param bool $hook
-     * @return mixed
+     * @return ItemModel
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Juanparati\Podium\Exceptions\AuthenticationException
+     * @throws \Juanparati\Podium\Exceptions\InvalidRequestException
+     * @throws \Juanparati\Podium\Exceptions\RateLimitException
      */
-    public function create(string|int $appId, array $attr, bool $silent = false, bool $hook = false) {
-        return $this->podium->request(
-            static::METHOD_POST,
-            "/item/app/$appId/",
-            $attr,
-            array_filter(['hook' => $hook, 'silent' => $silent])
+    public function create(
+        string|int $appId,
+        array $attr,
+        bool $silent = false,
+        bool $hook = false,
+    ) : ItemModel {
+        return new ItemModel(
+            $this->podium->request(
+                static::METHOD_POST,
+                "/item/app/$appId/",
+                $attr,
+                array_filter(['hook' => $hook, 'silent' => $silent])
+            ),
+            $this->podium
         );
     }
 
@@ -213,7 +225,11 @@ class ItemRequest extends RequestBase
      *
      * @param string|int $itemId
      * @param bool $markAsViewed
-     * @return mixed
+     * @return ItemModel
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Juanparati\Podium\Exceptions\AuthenticationException
+     * @throws \Juanparati\Podium\Exceptions\InvalidRequestException
+     * @throws \Juanparati\Podium\Exceptions\RateLimitException
      */
     public function get(string|int $itemId, bool $markAsViewed = false) {
         return new ItemModel(

@@ -15,4 +15,9 @@ class ImageItemField extends ItemFieldBase
 
         return $this;
     }
+
+    public function decodeValueForPost(): mixed
+    {
+        return $this->value['value']['file_id'] ?? null;
+    }
 }

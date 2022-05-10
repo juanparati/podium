@@ -49,7 +49,6 @@ abstract class ModelBase implements ModelContract, GenericTypeContract
     protected ?Podium $podium = null;
 
 
-
     /**
      * Constructor.
      *
@@ -196,7 +195,7 @@ abstract class ModelBase implements ModelContract, GenericTypeContract
             return $instance;
         };
 
-        if (is_array($value) && $this->__props[$prop]['isArray']) {
+        if (is_array($value) && ($this->__props[$prop]['isArray'] ?? false)) {
             $this->__props[$prop]['value'] = [];
 
             foreach ($value as $subVal) {
@@ -215,7 +214,7 @@ abstract class ModelBase implements ModelContract, GenericTypeContract
     }
 
 
-    public function getProps() : mixed
+    public function getProps() : array
     {
         return $this->__props;
     }
@@ -228,22 +227,13 @@ abstract class ModelBase implements ModelContract, GenericTypeContract
      */
     public function decodeValue(): array
     {
-        $data = [];
+        return $this->decodeValueType();
+    }
 
-        foreach ($this->__props as $propName => $prop) {
 
-            if (is_array($prop['value']) && !Arr::isAssoc($prop['value'])) {
-                foreach ($prop['value'] as $k => $subValue) {
-                    if (method_exists($subValue, 'decodeKey'))
-                        $k = $subValue->decodeKey();
-
-                    $data[$propName][$k] = $subValue === null ? null : $subValue->decodeValue();
-                }
-            } else
-                $data[$propName] = $prop['value'] === null ? null : $prop['value']->decodeValue();
-        }
-
-        return $data;
+    public function decodeValueForPost(): mixed
+    {
+        return $this->decodeValueType(true);
     }
 
 
@@ -277,7 +267,6 @@ abstract class ModelBase implements ModelContract, GenericTypeContract
             return $values;
         }
 
-
         return $prop instanceof GenericTypeContract ? $prop->decodeValue() : $prop;
     }
 
@@ -305,5 +294,40 @@ abstract class ModelBase implements ModelContract, GenericTypeContract
      */
     public function request() : ?RequestBase {
         return null;
+    }
+
+
+    /**
+     * Reset a model.
+     *
+     * @return void
+     */
+    public function reset() : void {
+        foreach ($this->__props as &$prop) {
+            $prop['value'] = $prop['isArray'] ? [] : null;
+        }
+    }
+
+
+    protected function decodeValueType(bool $forPostOperation = false): array
+    {
+        $data = [];
+
+        $method = $forPostOperation ? 'decodeValue' : 'decodeValueForPost';
+
+        foreach ($this->__props as $propName => $prop) {
+
+            if (is_array($prop['value']) && !Arr::isAssoc($prop['value'])) {
+                foreach ($prop['value'] as $k => $subValue) {
+                    if (method_exists($subValue, 'decodeKey'))
+                        $k = $subValue->decodeKey();
+
+                    $data[$propName][$k] = $subValue === null ? null : call_user_func([$subValue, $method]);
+                }
+            } else
+                $data[$propName] = $prop['value'] === null ? null : call_user_func([$prop['value'], $method]);
+        }
+
+        return $data;
     }
 }

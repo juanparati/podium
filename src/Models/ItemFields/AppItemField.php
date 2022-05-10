@@ -16,4 +16,10 @@ class AppItemField extends ItemFieldBase
 
         return $this;
     }
+
+
+    public function decodeValueForPost(): mixed
+    {
+        return $this->value['value']['app_item_id'] ?? null;
+    }
 }

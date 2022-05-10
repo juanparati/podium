@@ -62,4 +62,14 @@ abstract class ItemFieldBase extends GenericTypeBase implements ItemFieldContrac
      * @return $this
      */
     abstract public function encodeValue(mixed $value) : static;
+
+
+    /**
+     * Decode values for post operation.
+     *
+     * @return mixed
+     */
+    public function decodeValueForPost() : mixed {
+        return $this->decodeValue();
+    }
 }

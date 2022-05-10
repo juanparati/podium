@@ -298,4 +298,15 @@ class Podium
     {
         return $this->session;
     }
+
+
+    /**
+     * Return the cache store.
+     *
+     * @return Store
+     */
+    public function getCacheStore(): Store
+    {
+        return $this->cache;
+    }
 }

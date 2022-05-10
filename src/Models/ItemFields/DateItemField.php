@@ -132,4 +132,37 @@ class DateItemField extends ItemFieldBase
 
         return $this;
     }
+
+
+    /**
+     * Decode for POST/PUT operations.
+     *
+     * @return mixed
+     */
+    public function decodeValueForPost(): mixed
+    {
+        if ($this->value === null)
+            return null;
+
+        $dates = [
+            'start' => $this->value['start'],
+            'end'   => $this->value['end'] ?? null
+        ];
+
+        foreach ($dates as &$date) {
+            if ($date === null)
+                continue;
+
+            $date = Carbon::parse($date);
+
+            if ($this->options[static::OPTION_TIMEZONE] !== 'UTC')
+                $date->setTimezone($this->options[static::OPTION_TIMEZONE]);
+
+            $date = $date->toDateTimeString();
+        }
+
+        return empty($dates['end']) ? $dates['start'] : $dates;
+    }
+
+
 }

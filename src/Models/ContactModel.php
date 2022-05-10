@@ -60,5 +60,16 @@ class ContactModel extends ModelBase
         $this->registerRelation('image', FileModel::class);
     }
 
-   
+
+    /**
+     * Decode for POST/PUT operation.
+     *
+     * @return mixed
+     */
+    public function decodeValueForPost(): mixed
+    {
+        return $this->profile_id;
+    }
+
+
 }

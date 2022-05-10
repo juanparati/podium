@@ -24,6 +24,14 @@ interface GenericTypeContract
 
 
     /**
+     * Decoded value for a POST/PUT.
+     *
+     * @return mixed
+     */
+    public function decodeValueForPost() : mixed;
+
+
+    /**
      * Get original value with properties.
      *
      * @return mixed

@@ -47,12 +47,14 @@ class ItemFieldModel extends ModelBase
     const OPTION_FIELDS = 'fields';
 
 
+
     /**
      * Default options.
      *
      * @var array
      */
     protected array $__options = [self::OPTION_KEY_AS => self::KEY_AS_EXTERN_ID];
+
 
 
     /**
@@ -95,10 +97,10 @@ class ItemFieldModel extends ModelBase
                 $config = $this->__props['config']['value']->getProps();
                 $this->__props['values']['wrapper'] = '';
 
+                $this->setFieldBasicAttr($this->__props['type']['value']->getProps());
+
                 switch ($this->__props['type']['value']->getProps()) {
                     case 'category':
-                        $this->__props['values']['type'] = CategoryItemField::class;
-                        $this->__props['values']['isArray'] = true;
                         $this->__props['values']['value'] = array_map(
                             fn($cat) => (new CategoryItemField())->setConfig($config)->fillProps($cat),
                             $originalValues
@@ -106,15 +108,11 @@ class ItemFieldModel extends ModelBase
                         break;
 
                     case 'date':
-                        $this->__props['values']['type'] = DateItemField::class;
                         $this->__props['values']['value'] = (new DateItemField())->setConfig($config)->fillProps($originalValues[0]);
 
                         break;
 
                     case 'contact':
-                        $this->__props['values']['type'] = ContactModel::class;
-                        $this->__props['values']['isArray'] = true;
-                        $this->__props['values']['wrapper'] = 'value';
                         $this->__props['values']['value'] = array_map(
                             fn($contact) => new ContactModel($contact, $this->podium),
                             Arr::flatten($originalValues, 1)
@@ -123,8 +121,6 @@ class ItemFieldModel extends ModelBase
                         break;
 
                     case 'email':
-                        $this->__props['values']['type'] = EmailItemField::class;
-                        $this->__props['values']['isArray'] = true;
                         $this->__props['values']['value'] = array_map(
                             fn($phone) => (new EmailItemField())->setConfig($config)->fillProps($phone),
                             $originalValues
@@ -133,8 +129,6 @@ class ItemFieldModel extends ModelBase
                         break;
 
                     case 'phone':
-                        $this->__props['values']['type'] = PhoneItemField::class;
-                        $this->__props['values']['isArray'] = true;
                         $this->__props['values']['value'] = array_map(
                             fn($phone) => (new PhoneItemField())->setConfig($config)->fillProps($phone),
                             $originalValues
@@ -143,7 +137,6 @@ class ItemFieldModel extends ModelBase
                         break;
 
                     case 'number':
-                        $this->__props['values']['type'] = NumberItemField::class;
                         $this->__props['values']['value'] = (new NumberItemField())
                             ->setConfig($config)
                             ->fillProps($originalValues[0] ?? ['value' => $config['default_value']]);
@@ -151,9 +144,6 @@ class ItemFieldModel extends ModelBase
                         break;
 
                     case 'app':
-                        // @ToDo: Refactor AppItemModel in the future
-                        $this->__props['values']['type'] = AppItemField::class;
-                        $this->__props['values']['isArray'] = true;
                         $this->__props['values']['value'] = array_map(
                             fn($image) => (new AppItemField())->setConfig($config)->fillProps($image),
                             $originalValues
@@ -163,8 +153,6 @@ class ItemFieldModel extends ModelBase
 
 
                     case 'embed':
-                        $this->__props['values']['type'] = EmbedFileModel::class;
-                        $this->__props['values']['isArray'] = true;
                         $this->__props['values']['value'] = array_map(
                             fn($embed) => new EmbedFileModel($embed),
                             $originalValues
@@ -173,8 +161,6 @@ class ItemFieldModel extends ModelBase
                         break;
 
                     case 'image':
-                        $this->__props['values']['type'] = ImageItemField::class;
-                        $this->__props['values']['isArray'] = true;
                         $this->__props['values']['value'] = array_map(
                             fn($image) => (new ImageItemField())->setConfig($config)->fillProps($image),
                             $originalValues
@@ -183,7 +169,6 @@ class ItemFieldModel extends ModelBase
                         break;
 
                     case 'money':
-                        $this->__props['values']['type'] = MoneyItemField::class;
                         $this->__props['values']['value'] = (new MoneyItemField())
                             ->setConfig($config)
                             ->fillProps($originalValues[0]);
@@ -192,7 +177,6 @@ class ItemFieldModel extends ModelBase
 
 
                     case 'calculation':
-                        $this->__props['values']['type'] = CalculationItemField::class;
                         $this->__props['values']['value'] = (new CalculationItemField())
                             ->setConfig($config)
                             ->fillProps($originalValues[0]);
@@ -200,7 +184,6 @@ class ItemFieldModel extends ModelBase
                         break;
 
                     case 'location':
-                        $this->__props['values']['type'] = LocationItemField::class;
                         $this->__props['values']['value'] = (new LocationItemField())
                             ->setConfig($config)
                             ->fillProps($originalValues[0]);
@@ -208,7 +191,6 @@ class ItemFieldModel extends ModelBase
                         break;
 
                     case 'duration':
-                        $this->__props['values']['type'] = DurationItemField::class;
                         $this->__props['values']['value'] = (new DurationItemField())
                             ->setConfig($config)
                             ->fillProps($originalValues[0]);
@@ -216,17 +198,9 @@ class ItemFieldModel extends ModelBase
                         break;
 
                     case 'text':
-                        $this->__props['values']['type'] = TextItemField::class;
                         $this->__props['values']['value'] = (new TextItemField())
                             ->setConfig($config)
-                            ->setFormat($config['settings']['format'])
                             ->fillProps($originalValues[0]);
-                }
-
-                // Set options
-                if ($this->__props['values']['value'] instanceof ItemFieldContract
-                    && isset($this->__options[$this->__props['values']['type']])) {
-                    $this->__props['values']['value']->setOptions($this->__options[$this->__props['values']['type']]);
                 }
             }
         }
@@ -270,6 +244,8 @@ class ItemFieldModel extends ModelBase
      */
     public function setRawValue(mixed $values) : void {
 
+        $this->setFieldBasicAttr($this->__props['type']['value']->getProps());
+
         $type = $this->__props['values']['type'];
         $config = $this->__props['config']['value']->getProps();
 
@@ -284,6 +260,7 @@ class ItemFieldModel extends ModelBase
                 }
             }
         } else {
+
             if (!($values instanceof ItemFieldContract)) {
                 $values = (new $type())
                     ->setConfig($config)
@@ -292,7 +269,6 @@ class ItemFieldModel extends ModelBase
 
             $this->__props['values']['value'] = $values;
         }
-
     }
 
 
@@ -323,5 +299,82 @@ class ItemFieldModel extends ModelBase
             $key = str_replace('-', '_', $key);
 
         return (string) $key;
+    }
+
+
+    /**
+     * Set basic attributes for a field.
+     *
+     * @param string $type
+     * @return void
+     */
+    protected function setFieldBasicAttr(string $type) {
+
+        switch ($type) {
+            case 'category':
+                $this->__props['values']['type'] = CategoryItemField::class;
+                $this->__props['values']['isArray'] = true;
+                break;
+
+            case 'date':
+                $this->__props['values']['type'] = DateItemField::class;
+                break;
+
+            case 'contact':
+                $this->__props['values']['type'] = ContactModel::class;
+                $this->__props['values']['isArray'] = true;
+                $this->__props['values']['wrapper'] = 'value';
+                break;
+
+            case 'email':
+                $this->__props['values']['type'] = EmailItemField::class;
+                $this->__props['values']['isArray'] = true;
+                break;
+
+            case 'phone':
+                $this->__props['values']['type'] = PhoneItemField::class;
+                $this->__props['values']['isArray'] = true;
+                break;
+
+            case 'number':
+                $this->__props['values']['type'] = NumberItemField::class;
+                break;
+
+            case 'app':
+                // @ToDo: Refactor AppItemModel in the future
+                $this->__props['values']['type'] = AppItemField::class;
+                $this->__props['values']['isArray'] = true;
+                break;
+
+            case 'embed':
+                $this->__props['values']['type'] = EmbedFileModel::class;
+                $this->__props['values']['isArray'] = true;
+                break;
+
+            case 'image':
+                $this->__props['values']['type'] = ImageItemField::class;
+                $this->__props['values']['isArray'] = true;
+                break;
+
+            case 'money':
+                $this->__props['values']['type'] = MoneyItemField::class;
+                break;
+
+            case 'calculation':
+                $this->__props['values']['type'] = CalculationItemField::class;
+                break;
+
+            case 'location':
+                $this->__props['values']['type'] = LocationItemField::class;
+                break;
+
+            case 'duration':
+                $this->__props['values']['type'] = DurationItemField::class;
+                break;
+
+            case 'text':
+                $this->__props['values']['type'] = TextItemField::class;
+                break;
+        }
     }
 }

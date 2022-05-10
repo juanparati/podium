@@ -40,7 +40,17 @@ abstract class GenericTypeBase implements GenericTypeContract
      *
      * @return mixed
      */
-    abstract function decodeValue() : mixed;
+    abstract public function decodeValue() : mixed;
+
+
+    /**
+     * Decoded value for POST/PUT operations.
+     *
+     * @return mixed
+     */
+    public function decodeValueForPost() : mixed {
+        return $this->decodeValue();
+    }
 
 
     /**

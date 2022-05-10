@@ -65,4 +65,15 @@ class NumberItemField extends ItemFieldBase
 
         return $this;
     }
+
+
+    /**
+     * Decode value for POST/PUT operation.
+     *
+     * @return mixed
+     */
+    public function decodeValueForPost(): mixed
+    {
+        return $this->value['value'] ?? null;
+    }
 }
