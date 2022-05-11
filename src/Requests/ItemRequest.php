@@ -225,21 +225,20 @@ class ItemRequest extends RequestBase
      *
      * @param string|int $itemId
      * @param bool $markAsViewed
-     * @return ItemModel
+     * @return ItemModel|null
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Juanparati\Podium\Exceptions\AuthenticationException
      * @throws \Juanparati\Podium\Exceptions\InvalidRequestException
      * @throws \Juanparati\Podium\Exceptions\RateLimitException
      */
-    public function get(string|int $itemId, bool $markAsViewed = false) {
-        return new ItemModel(
-            $this->podium->request(
-                static::METHOD_GET,
-                "/item/{$itemId}",
-                options: array_filter(['mark_as_viewed' => $markAsViewed])
-            ),
-            $this->podium
+    public function get(string|int $itemId, bool $markAsViewed = false) : ?ItemModel {
+        $response = $this->podium->request(
+            static::METHOD_GET,
+            "/item/{$itemId}",
+            options: array_filter(['mark_as_viewed' => $markAsViewed])
         );
+
+        return $response ? new ItemModel($response, $this->podium) : null;
     }
 
 

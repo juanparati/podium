@@ -81,6 +81,17 @@ class ItemModel extends ModelBase
     }
 
 
+    public function setPropValue(string $prop, $value): static
+    {
+        // Preload all the fields schema.
+        if ($prop === 'fields' && !empty($value) && !empty($this->app['app_id'])) {
+            $appSchema = $this->retrieveAppSchema($this->app['app_id']);
+            $value = array_merge($appSchema['fields'], $value);
+        }
+
+        return parent::setPropValue($prop, $value);
+    }
+
     public function getPropValue(string $prop): mixed
     {
         if ($prop === 'fields') {
@@ -168,18 +179,25 @@ class ItemModel extends ModelBase
      */
     public function prepareNew(string|int $appId, bool $force = false) : static {
         $this->reset();
-        return $this->loadAppSchema($appId, $force);
+        $appSchema = $this->retrieveAppSchema($appId, $force);
+
+        $this->fillProps([
+            'fields' => $appSchema['fields'],
+            'app' => Arr::except($appSchema, 'fields'),
+        ]);
+
+        return $this;
     }
 
 
     /**
-     * Load the Item model schema for the fields.
+     * Retrieve App Schema.
      *
      * @param string|int $appId
      * @param bool $force
-     * @return $this
+     * @return array
      */
-    public function loadAppSchema(string|int $appId, bool $force = false) : static {
+    protected function retrieveAppSchema(string|int $appId, bool $force = false) : array {
         $key = 'schema:' . $appId;
 
         if (!($appSchema = $this->podium->getCacheStore()->get($key)) || $force) {
@@ -188,12 +206,7 @@ class ItemModel extends ModelBase
             $this->podium->getCacheStore()->put($key, $appSchema, static::DEFAULT_SCHEMA_CACHE_TIME);
         }
 
-        $this->fillProps([
-            'app'    => Arr::except($appSchema, 'fields'),
-            'fields' => $appSchema['fields']
-        ]);
-
-        return $this;
+        return $appSchema;
     }
 
 

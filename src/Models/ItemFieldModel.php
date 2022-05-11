@@ -253,7 +253,9 @@ class ItemFieldModel extends ModelBase
             $this->__props['values']['value'] = [];
 
             foreach ($values as $value) {
-                if (!($value instanceof ItemFieldContract)) {
+                if ($value instanceof ItemFieldContract) {
+                    $this->__props['values']['value'][] = $value;
+                } else {
                     $this->__props['values']['value'][] = (new $type())
                         ->setConfig($config)
                         ->encodeValue($value);
@@ -261,13 +263,13 @@ class ItemFieldModel extends ModelBase
             }
         } else {
 
-            if (!($values instanceof ItemFieldContract)) {
-                $values = (new $type())
+            if ($values instanceof ItemFieldContract)
+                $this->__props['values']['value'] = $values;
+            else {
+                $this->__props['values']['value'] = (new $type())
                     ->setConfig($config)
                     ->encodeValue($values);
             }
-
-            $this->__props['values']['value'] = $values;
         }
     }
 

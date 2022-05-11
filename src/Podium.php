@@ -234,8 +234,6 @@ class Podium
         };
 
 
-        $result = null;
-
         switch ($response->getStatusCode()) {
             case 200:
             case 201:
@@ -272,14 +270,23 @@ class Podium
                     }
                 }
 
-                throw new InvalidRequestException(
-                    'Invalid request: ' . $response->getBody(),
-                    $response->getStatusCode()
-                );
+                break;
 
             case 403:
                 throw new RateLimitException('Rate limit: ' . $response->getBody());
+                break;
 
+            case 404:
+                $result = json_decode($response->getBody(), true);
+
+                if (JSON_ERROR_NONE === json_last_error()) {
+                    $error = $result['error'] ?? null;
+
+                    if ('not_found' === $error)
+                        return null;
+                }
+
+                break;
         }
 
         throw new InvalidRequestException(
