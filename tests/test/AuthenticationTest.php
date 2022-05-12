@@ -28,44 +28,7 @@ class AuthenticationTest extends PodiumTestBase
 
 
 
-        //$model = (new ItemRequest(static::$client))->get(2078296577)->loadAppSchema('27443515');
 
-        $model = (new ItemRequest(static::$client))->get(2092728339);
-        $model->fields->phonefield = [new PhoneItemField(['type' => 'work', 'value' => '44556667'])];
-        die(var_dump($model->decodeValue()));
-
-        /*
-        $model->fields->multiplecategoryfield = ['Two', 'Three'];
-        $model->fields->title = 'test';
-        $model->save();
-        */
-
-
-        /*
-        $model = new ItemModel([], static::$client);
-        $model->prepareNew(27443515);
-        $model->fields->title = 'foobar';
-        $model->fields->multiplecategoryfield = ['One'];
-        $model->save();
-        */
-
-
-        /*
-        $itemFilter = (new ItemFilterModel([], static::$client))
-            ->setLimit(2)
-            ->setSortDesc(true)
-            ->filter(static::$credentials->app_id);
-
-        foreach ($itemFilter->items() as $item) {
-            echo $item->fields->title . PHP_EOL;
-        }
-        */
-
-        /*
-        $item = new ItemModel([], static::$client);
-
-        $itemModel = $item->request()->get();
-        */
     }
 
 }
