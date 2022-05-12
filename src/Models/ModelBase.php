@@ -315,7 +315,7 @@ abstract class ModelBase implements ModelContract, GenericTypeContract
     {
         $data = [];
 
-        $method = $forPostOperation ? 'decodeValue' : 'decodeValueForPost';
+        $method = $forPostOperation ? 'decodeValueForPost' : 'decodeValue';
 
         foreach ($this->__props as $propName => $prop) {
 

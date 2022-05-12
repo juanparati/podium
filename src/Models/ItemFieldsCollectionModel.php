@@ -23,8 +23,8 @@ class ItemFieldsCollectionModel implements \Iterator, \ArrayAccess, Arrayable
     public function decodeValue() : array {
         $data = [];
 
-        foreach (array_keys($this->fields) as $key)
-            $data[$key] = $this->{$key};
+        foreach ($this->fields as $key => $field)
+            $data[$key] = $field->decodeValue();
 
         return $data;
     }
