@@ -296,10 +296,6 @@ class ItemFieldModel extends ModelBase
      */
     public function decodeKey() : string {
         $key =  $this->__props[$this->__options[static::OPTION_KEY_AS]]['value']->getProps();
-
-        if ($this->__options[static::OPTION_KEY_AS] === static::KEY_AS_EXTERN_ID)
-            $key = str_replace('-', '_', $key);
-
         return (string) $key;
     }
 
