@@ -4,7 +4,7 @@ namespace Juanparati\Podium\Models;
 
 use Illuminate\Contracts\Support\Arrayable;
 
-class ItemFieldsCollectionModel implements \Iterator, Arrayable
+class ItemFieldsCollectionModel implements \Iterator, \ArrayAccess, Arrayable
 {
 
     /**
@@ -27,15 +27,6 @@ class ItemFieldsCollectionModel implements \Iterator, Arrayable
             $data[$key] = $this->{$key};
 
         return $data;
-    }
-
-
-    public function __get(string $field) {
-        return isset($this->fields[$field]) ? $this->fields[$field]->decodeValue()['values'] : null;
-    }
-
-    public function __set(string $field, mixed $value) {
-        $this->fields[$field]->setRawValue($value);
     }
 
     public function current()
@@ -66,5 +57,29 @@ class ItemFieldsCollectionModel implements \Iterator, Arrayable
     public function toArray()
     {
         return $this->fields;
+    }
+
+    public function offsetSet($field, $value) {
+        $this->fields[$field]->setRawValue($value);
+    }
+
+    public function offsetExists($field) {
+        return isset($this->fields[$field]);
+    }
+
+    public function offsetUnset($field) {
+        unset($this->fields[$field]);
+    }
+
+    public function offsetGet($field) {
+        return isset($this->fields[$field]) ? $this->fields[$field]->decodeValue()['values'] : null;
+    }
+
+    public function __get(string $field) {
+        return $this->offsetGet($field);
+    }
+
+    public function __set(string $field, mixed $value) {
+        $this->offsetSet($field, $value);
     }
 }

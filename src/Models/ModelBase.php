@@ -300,12 +300,14 @@ abstract class ModelBase implements ModelContract, GenericTypeContract
     /**
      * Reset a model.
      *
-     * @return void
+     * @return static
      */
-    public function reset() : void {
+    public function reset() : static {
         foreach ($this->__props as &$prop) {
             $prop['value'] = $prop['isArray'] ? [] : null;
         }
+
+        return $this;
     }
 
 

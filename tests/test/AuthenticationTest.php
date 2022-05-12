@@ -3,6 +3,7 @@
 namespace Juanparati\Podium\Tests\test;
 
 use Juanparati\Podium\Auths\AppAuth;
+use Juanparati\Podium\Models\ItemFields\PhoneItemField;
 use Juanparati\Podium\Models\ItemFilterModel;
 use Juanparati\Podium\Models\ItemModel;
 use Juanparati\Podium\Requests\ItemRequest;
@@ -26,8 +27,27 @@ class AuthenticationTest extends PodiumTestBase
         $this->assertTrue(true);
 
 
-        $model = (new ItemRequest(static::$client))->get(2078296577);
-        //$model->fields->update()
+
+        //$model = (new ItemRequest(static::$client))->get(2078296577)->loadAppSchema('27443515');
+
+        $model = (new ItemRequest(static::$client))->get(2092728339);
+        $model->fields->phonefield = [new PhoneItemField(['type' => 'work', 'value' => '44556667'])];
+        die(var_dump($model->decodeValue()));
+
+        /*
+        $model->fields->multiplecategoryfield = ['Two', 'Three'];
+        $model->fields->title = 'test';
+        $model->save();
+        */
+
+
+        /*
+        $model = new ItemModel([], static::$client);
+        $model->prepareNew(27443515);
+        $model->fields->title = 'foobar';
+        $model->fields->multiplecategoryfield = ['One'];
+        $model->save();
+        */
 
 
         /*

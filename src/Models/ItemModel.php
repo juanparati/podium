@@ -24,7 +24,7 @@ class ItemModel extends ModelBase
     protected const DEFAULT_SCHEMA_CACHE_TIME = 300;
 
 
-    public function init() : void
+    public function init(): void
     {
         $this->registerProp('item_id', IntGenericType::class, false, ['id' => true]);
         $this->registerProp('external_id', StringGenericType::class);
@@ -60,7 +60,7 @@ class ItemModel extends ModelBase
         $this->registerProp('subscribed_count', IntGenericType::class);
         $this->registerProp('revision', IntGenericType::class);
         $this->registerProp('push', RawGenericType::class);
-        
+
         $this->registerRelation('app', AppModel::class);
         $this->registerRelation('ref', ReferenceModel::class);
         $this->registerRelation('reminder', ReminderModel::class);
@@ -127,7 +127,8 @@ class ItemModel extends ModelBase
      * @return void
      * @throws MissingRelationshipException
      */
-    public function save(bool $silent = false, bool $hook = true) {
+    public function save(bool $silent = false, bool $hook = true)
+    {
 
         $values = Arr::only(
             $this->decodeValueForPost(),
@@ -158,14 +159,14 @@ class ItemModel extends ModelBase
             if (empty($this->app['app_id']))
                 throw new MissingRelationshipException('Model require an App definition.');
 
-            $this->fillProps(
-                $this->request()->create(
+            $newValues = $this->request()->create(
                     $this->app['app_id'],
                     $values,
                     $silent,
                     $hook
-                )->originalValues()
-            );
+                )->originalValues();
+
+            $this->fillProps(Arr::except($newValues, 'fields'));
         }
     }
 
@@ -177,13 +178,14 @@ class ItemModel extends ModelBase
      * @param bool $force
      * @return $this
      */
-    public function prepareNew(string|int $appId, bool $force = false) : static {
+    public function prepareNew(string|int $appId, bool $force = false): static
+    {
         $this->reset();
         $appSchema = $this->retrieveAppSchema($appId, $force);
 
         $this->fillProps([
             'fields' => $appSchema['fields'],
-            'app' => Arr::except($appSchema, 'fields'),
+            'app'    => Arr::except($appSchema, 'fields'),
         ]);
 
         return $this;
@@ -197,8 +199,13 @@ class ItemModel extends ModelBase
      * @param bool $force
      * @return array
      */
-    protected function retrieveAppSchema(string|int $appId, bool $force = false) : array {
+    protected function retrieveAppSchema(string|int $appId, bool $force = false): array
+    {
         $key = 'schema:' . $appId;
+
+        if (!$this->podium) {
+            return ['fields' => []];
+        }
 
         if (!($appSchema = $this->podium->getCacheStore()->get($key)) || $force) {
             $appSchema = (new AppRequest($this->podium))->get($appId)->originalValues();
@@ -215,7 +222,8 @@ class ItemModel extends ModelBase
      *
      * @return array
      */
-    protected function prepareValuesForPost() : array {
+    protected function prepareValuesForPost(): array
+    {
         return collect($this->decodeValueType(true)['fields'])
             ->filter(fn($field) => $field['values'] !== null)
             ->keyBy('field_id')

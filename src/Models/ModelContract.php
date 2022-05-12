@@ -65,5 +65,5 @@ interface ModelContract
      *
      * @return void
      */
-    public function reset() : void;
+    public function reset() : static;
 }
