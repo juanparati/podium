@@ -227,6 +227,12 @@ class Podium
                 RequestOptions::HEADERS => $headers,
             ]),
 
+            static::METHOD_DELETE => $client->delete($url, [
+                RequestOptions::JSON  => $attributes,
+                RequestOptions::QUERY => $options,
+                RequestOptions::HEADERS => $headers,
+            ]),
+
             default => $client->get($url, [
                 RequestOptions::QUERY => $options,
                 RequestOptions::HEADERS => $headers
