@@ -52,7 +52,7 @@ class HookRequest extends RequestBase
      * @throws \Juanparati\Podium\Exceptions\InvalidRequestException
      * @throws \Juanparati\Podium\Exceptions\RateLimitException
      */
-    public function verify(string|int $hookId) : array {
+    public function verify(string|int $hookId) : bool|array {
         return $this->podium->request(
             static::METHOD_POST,
             "/hook/{$hookId}/verify/request",
