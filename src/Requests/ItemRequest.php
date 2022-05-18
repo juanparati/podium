@@ -32,7 +32,7 @@ class ItemRequest extends RequestBase
                 static::METHOD_POST,
                 "/item/app/$appId/",
                 $attr,
-                array_filter(['hook' => $hook, 'silent' => $silent])
+                array_filter(['hook' => $hook ? null : 'false', 'silent' => $silent ? '1' : null])
             ),
             $this->podium
         );
@@ -112,7 +112,8 @@ class ItemRequest extends RequestBase
         return $this->podium->request(
             static::METHOD_DELETE,
             "/item/{$itemId}",
-            options: array_filter(['hook' => $hook, 'silent' => $silent])
+            options: array_filter(['hook' => $hook ? null : 'false', 'silent' => $silent ? '1' : null])
+
         );
     }
 
@@ -547,7 +548,7 @@ class ItemRequest extends RequestBase
             static::METHOD_PUT,
             "/item/$itemId",
             $attr,
-            array_filter(['silent' => $silent, 'hook' => $hook])
+            array_filter(['hook' => $hook ? null : 'false', 'silent' => $silent ? '1' : null])
         );
     }
 
@@ -564,7 +565,7 @@ class ItemRequest extends RequestBase
         $this->podium->request(
             static::METHOD_PUT,
             "/item/$itemId/value",
-            array_filter(['silent' => $silent, 'hook' => $hook])
+            array_filter(['hook' => $hook ? null : 'false', 'silent' => $silent ? '1' : null])
         );
     }
 

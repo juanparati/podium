@@ -214,9 +214,6 @@ class Podium
             'Authorization' => 'OAuth2 ' . $auth['access_token']
         ];
 
-        // Options are passed as query strings, hereby the values with null/false/0 values are ignored.
-        $options = array_filter($options);
-
         $response = match ($method) {
             static::METHOD_POST => $client->post($url, [
                 RequestOptions::JSON  => $attributes,
