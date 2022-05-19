@@ -249,7 +249,7 @@ class ItemFieldModel extends ModelBase
         $type = $this->__props['values']['type'];
         $config = $this->__props['config']['value']->getProps();
 
-        if (is_array($values)) {
+        if ($this->__props['values']['isArray'] ?? false) {
             $this->__props['values']['value'] = [];
 
             foreach ($values as $value) {

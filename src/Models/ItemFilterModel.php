@@ -99,7 +99,14 @@ class ItemFilterModel extends ModelBase
     public function filter(string|int $appId) {
         $this->lastAppId = $appId;
 
-        $this->fillProps($this->request()->filter($appId, $this->requestBody, true));
+        $list = $this->request()->filter($appId, $this->requestBody, true);
+
+        // Inject the App Id
+        foreach (($list['items'] ?? []) as $k => $item) {
+            $list['items'][$k] = array_merge(['app' => ['app_id' => $appId]], $list['items'][$k]);
+        }
+
+        $this->fillProps($list);
 
         return $this;
     }

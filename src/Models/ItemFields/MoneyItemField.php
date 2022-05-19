@@ -7,6 +7,18 @@ use Juanparati\Podium\Exceptions\DataIntegrityException;
 class MoneyItemField extends ItemFieldBase
 {
 
+
+    /**
+     * Original value.
+     *
+     * @var array
+     */
+    protected mixed $value = [
+        'currency' => null,
+        'value'    => null
+    ];
+
+
     /**
      * Fill value.
      *
@@ -32,7 +44,7 @@ class MoneyItemField extends ItemFieldBase
     {
         return [
             'currency' => $this->value['currency'],
-            'value' => (float) $this->value['value']
+            'value'    => (float) $this->value['value'],
         ];
     }
 

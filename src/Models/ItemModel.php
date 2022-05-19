@@ -21,7 +21,8 @@ class ItemModel extends ModelBase
     /**
      * Default cache time used for the schema cache.
      */
-    protected const DEFAULT_SCHEMA_CACHE_TIME = 300;
+    protected const DEFAULT_SCHEMA_CACHE_TIME = 120;
+
 
 
     public function init(): void

@@ -274,6 +274,13 @@ class Podium
                                 $response->getStatusCode()
                             );
                     }
+
+                    if ('rate_limit' === $error) {
+                        throw new RateLimitException(
+                            $response->getBody(),
+                            $response->getStatusCode()
+                        );
+                    }
                 }
 
                 break;
