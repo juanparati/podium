@@ -29,57 +29,65 @@ class ItemFieldsCollectionModel implements \Iterator, \ArrayAccess, Arrayable
         return $data;
     }
 
-    public function current()
+    public function current() : mixed
     {
         return current($this->fields);
     }
 
-    public function next()
+    public function next() : void
     {
         next($this->fields);
     }
 
-    public function key()
+    public function key() : string|int|null
     {
         return key($this->fields);
     }
 
-    public function valid()
+    public function valid() : bool
     {
         return key($this->fields) !== null;
     }
 
-    public function rewind()
+    public function rewind() : void
     {
         reset($this->fields);
     }
 
-    public function toArray()
+    public function toArray() : array
     {
         return $this->fields;
     }
 
-    public function offsetSet($field, $value) {
-        $this->fields[$field]->setRawValue($value);
+    public function offsetSet($offset, $value) : void {
+        $this->fields[$offset]->setRawValue($value);
     }
 
-    public function offsetExists($field) {
-        return isset($this->fields[$field]);
+    public function offsetExists($offset) : bool {
+        return isset($this->fields[$offset]);
     }
 
-    public function offsetUnset($field) {
-        unset($this->fields[$field]);
+    public function offsetUnset($offset) : void {
+        unset($this->fields[$offset]);
     }
 
-    public function offsetGet($field) {
+    public function offsetGet($field) : mixed {
         return isset($this->fields[$field]) ? $this->fields[$field]->decodeValue()['values'] : null;
     }
 
-    public function __get(string $field) {
+    public function getProp(string $field) : mixed {
         return $this->offsetGet($field);
     }
 
-    public function __set(string $field, mixed $value) {
+    public function setProp(string $field, mixed $value) : void {
         $this->offsetSet($field, $value);
+    }
+
+    public function __get(string $field) : mixed {
+        return $this->getProp($field);
+    }
+
+    public function __set(string $field, mixed $value) : void {
+        $this->setProp($field, $value);
     }
 }

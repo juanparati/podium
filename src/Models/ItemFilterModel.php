@@ -99,7 +99,12 @@ class ItemFilterModel extends ModelBase
     public function filter(string|int $appId) {
         $this->lastAppId = $appId;
 
-        $list = $this->request()->filter($appId, $this->requestBody, true);
+        $list = $this->request()->filter(
+            $appId,
+            $this->requestBody,
+            true,
+            $this->__options
+        );
 
         // Inject the App Id
         foreach (($list['items'] ?? []) as $k => $item) {
@@ -170,7 +175,7 @@ class ItemFilterModel extends ModelBase
     {
         while (count($this->items)) {
             foreach ($this->getPropValue('items') as $item) {
-                yield $item;
+                yield $item->setOptions($this->__options ?? []);
             }
 
             $this->nextPage();

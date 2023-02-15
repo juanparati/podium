@@ -78,7 +78,7 @@ class DateItemField extends ItemFieldBase
             return null;
 
         $dates = [
-            'start' => $this->value['start'],
+            'start' => $this->value['start'] ?? null,
             'end'   => $this->value['end'] ?? null
         ];
 

@@ -3,6 +3,7 @@
 namespace Juanparati\Podium\Models;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Juanparati\Podium\Models\Generics\IntGenericType;
 use Juanparati\Podium\Models\Generics\RawGenericType;
 use Juanparati\Podium\Models\Generics\StringGenericType;
@@ -38,14 +39,14 @@ class ItemFieldModel extends ModelBase
      */
     const KEY_AS_EXTERN_ID = 'external_id';
     const KEY_AS_FIELD_ID = 'field_id';
+    const KEY_AS_SNAKECASE = 'external_id_snake';
 
 
     /**
      * Options.
      */
-    const OPTION_KEY_AS = 'key_as';
-    const OPTION_FIELDS = 'fields';
-
+    const OPTION_KEY_AS        = 'key_as';
+    const OPTION_FIELDS        = 'fields';
 
 
     /**
@@ -145,7 +146,7 @@ class ItemFieldModel extends ModelBase
 
                     case 'app':
                         $this->__props['values']['value'] = array_map(
-                            fn($image) => (new AppItemField())->setConfig($config)->fillProps($image),
+                            fn($app) => (new AppItemField())->setConfig($config)->fillProps($app),
                             $originalValues
                         );
 
@@ -202,6 +203,8 @@ class ItemFieldModel extends ModelBase
                             ->setConfig($config)
                             ->fillProps($originalValues[0]);
                 }
+
+                $this->__props['values']['hash'] = md5(json_encode($this->values));
             }
         }
 
@@ -262,7 +265,6 @@ class ItemFieldModel extends ModelBase
                 }
             }
         } else {
-
             if ($values instanceof ItemFieldContract)
                 $this->__props['values']['value'] = $values;
             else {
@@ -295,7 +297,11 @@ class ItemFieldModel extends ModelBase
      * @return string
      */
     public function decodeKey() : string {
-        $key =  $this->__props[$this->__options[static::OPTION_KEY_AS]]['value']->getProps();
+        if ($this->__options[static::OPTION_KEY_AS] === static::KEY_AS_SNAKECASE) {
+            $key = Str::snake(Str::camel($this->__props['external_id']['value']->getProps()));
+        } else
+            $key =  $this->__props[$this->__options[static::OPTION_KEY_AS]]['value']->getProps();
+
         return (string) $key;
     }
 
@@ -374,5 +380,14 @@ class ItemFieldModel extends ModelBase
                 $this->__props['values']['type'] = TextItemField::class;
                 break;
         }
+    }
+
+    protected function decodeValueType(bool $forPostOperation = false): array
+    {
+        // Ignore those fields that have not been edited.
+        if ($forPostOperation && (($this->__props['values']['hash'] ?? null) === md5(json_encode($this->values))))
+            return ['values' => null];
+
+        return parent::decodeValueType($forPostOperation);
     }
 }

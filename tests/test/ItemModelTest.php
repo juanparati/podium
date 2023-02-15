@@ -4,6 +4,7 @@ namespace Juanparati\Podium\Tests\test;
 
 use Juanparati\Podium\Models\ItemFieldModel;
 use Juanparati\Podium\Models\ItemFields\DateItemField;
+use Juanparati\Podium\Models\ItemFields\MoneyItemField;
 use Juanparati\Podium\Models\ItemModel;
 use PHPUnit\Framework\TestCase;
 
@@ -70,6 +71,62 @@ class ItemModelTest extends TestCase
 
         $this->assertEquals([['value' => 'test_1']], $fields[238632570]->originalValues()['values']);
     }
+
+
+    public function testDirtyFields() {
+        $rawItem = json_decode(file_get_contents(__DIR__ . '/../assets/item.json'), true);
+
+        $model = new ItemModel($rawItem);
+        $model->fields['title'] = 'Changed';
+        $model->fields['categoryfield'] = ['Two'];
+        $model->fields['moneyfield'] = new MoneyItemField(['currency' => 'DKK', 'value' => 1223.22]);
+
+        $fields = $model->decodeValueForPost();
+
+        $this->assertNotNull($fields['fields']['title']['values']);
+        $this->assertNotNull($fields['fields']['categoryfield']['values']);
+        $this->assertNotNull($fields['fields']['moneyfield']['values']);
+
+        $this->assertNull($fields['fields']['datefield']['values']);
+        $this->assertNull($fields['fields']['phonefield']['values']);
+        $this->assertNull($fields['fields']['locationfield']['values']);
+
+
+        // Test when came back to original values.
+        $model->fields['categoryfield'] = ['One'];
+        $model->fields['title'] = 'This is TextField';
+
+        $fields = $model->decodeValueForPost();
+
+        $this->assertNull($fields['fields']['title']['values']);
+        $this->assertNull($fields['fields']['categoryfield']['values']);
+        $this->assertNull($fields['fields']['datefield']['values']);
+        $this->assertNull($fields['fields']['phonefield']['values']);
+        $this->assertNull($fields['fields']['locationfield']['values']);
+
+        // Test after the model was reset
+        $model->fields['phonefield'] = [['type' => 'work', 'value' => '23344566']];
+
+        $fields = $model->decodeValueForPost();
+        $this->assertNotNull($fields['fields']['phonefield']['values']);
+    }
+
+
+
+    public function testSnakeCaseKey() {
+        $rawItem = json_decode(file_get_contents(__DIR__ . '/../assets/item.json'), true);
+
+        $model = (new ItemModel($rawItem))
+            ->setOptions([
+                ItemFieldModel::class => [
+                    ItemFieldModel::OPTION_KEY_AS => ItemFieldModel::KEY_AS_SNAKECASE,
+                ],
+            ]);
+
+
+        $this->assertArrayHasKey('title_second', $model->fields->decodeValue());
+    }
+
 
 
     /**

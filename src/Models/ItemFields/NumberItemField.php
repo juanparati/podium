@@ -3,6 +3,8 @@
 namespace Juanparati\Podium\Models\ItemFields;
 
 
+use Illuminate\Support\Arr;
+
 class NumberItemField extends ItemFieldBase
 {
 
@@ -16,6 +18,17 @@ class NumberItemField extends ItemFieldBase
             'decimals' => 0
         ]
     ];
+
+
+    public function fillProps(mixed $value) : static {
+
+        if (is_array($value))
+            $this->value = Arr::isAssoc($value) ? $value : $value[0];
+        else
+            $this->value = ['value' => $value];
+
+        return $this;
+    }
 
 
     /**

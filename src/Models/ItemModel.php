@@ -130,7 +130,6 @@ class ItemModel extends ModelBase
      */
     public function save(bool $silent = false, bool $hook = true)
     {
-
         $values = Arr::only(
             $this->decodeValueForPost(),
             [

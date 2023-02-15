@@ -268,8 +268,8 @@
       "type": "date",
       "external_id": "datefield",
       "values": {
-          "start": "2022-04-01",
-          "end":   "2022-04-03"
+        "start": "2022-04-01",
+        "end": "2022-04-03"
       },
       "label": "DateField",
       "config": {
@@ -769,6 +769,30 @@
             "minutes",
             "seconds"
           ]
+        }
+      },
+      "status": "active"
+    },
+    "title-second": {
+      "field_id": 238932570,
+      "type": "text",
+      "external_id": "title-second",
+      "values": "This is TextField",
+      "label": "TextField",
+      "config": {
+        "default_value": null,
+        "unique": false,
+        "description": null,
+        "hidden_create_view_edit": false,
+        "required": false,
+        "mapping": null,
+        "label": "TextField",
+        "visible": true,
+        "delta": 0,
+        "hidden": false,
+        "settings": {
+          "format": "plain",
+          "size": "small"
         }
       },
       "status": "active"

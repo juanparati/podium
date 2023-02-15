@@ -1047,6 +1047,33 @@
 				}
 			},
 			"external_id": "durationfield"
+		},
+		{	"status": "active",
+			"type": "text",
+			"field_id": 238932570,
+			"label": "TextField",
+			"values": [
+				{
+					"value": "This is TextField"
+				}
+			],
+			"config": {
+				"default_value": null,
+				"unique": false,
+				"description": null,
+				"hidden_create_view_edit": false,
+				"required": false,
+				"mapping": null,
+				"label": "TextField",
+				"visible": true,
+				"delta": 0,
+				"hidden": false,
+				"settings": {
+					"format": "plain",
+					"size": "small"
+				}
+			},
+			"external_id": "title-second"
 		}
 	],
 	"rights": [

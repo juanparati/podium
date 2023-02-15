@@ -154,16 +154,22 @@ class ItemRequest extends RequestBase
      *
      * @param string|int $appId
      * @param array $attr
-     * @return mixed
+     * @param bool $raw
+     * @param array $options
+     * @return ItemFilterModel|mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Juanparati\Podium\Exceptions\AuthenticationException
+     * @throws \Juanparati\Podium\Exceptions\InvalidRequestException
+     * @throws \Juanparati\Podium\Exceptions\RateLimitException
      */
-    public function filter(string|int $appId, array $attr, bool $raw = false) {
+    public function filter(string|int $appId, array $attr, bool $raw = false, array $options = []) {
         $response = $this->podium->request(
             static::METHOD_POST,
             "/item/app/{$appId}/filter/",
             $attr
         );
 
-        return $raw ? $response : new ItemFilterModel($response, $this->podium);
+        return $raw ? $response : (new ItemFilterModel($response, $this->podium))->setOptions($options);
     }
 
 

@@ -277,10 +277,10 @@ abstract class ModelBase implements ModelContract, GenericTypeContract
         foreach ($this->__props as $propName => $prop) {
             if (is_array($prop['value']) && !Arr::isAssoc($prop['value'])) {
                 foreach ($prop['value'] as $k => $subValue) {
-                    $data[$propName][$k] = $subValue === null ? null : $subValue->originalValues();
+                    $data[$propName][$k] = $subValue?->originalValues();
                 }
             } else
-                $data[$propName] = $prop['value'] === null ? null : $prop['value']->originalValues();
+                $data[$propName] = $prop['value']?->originalValues();
         }
 
         return $data;
