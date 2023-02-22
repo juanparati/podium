@@ -2,9 +2,6 @@
 
 A modern [Podio](https://www.podio.com/) API client compatible with Laravel.
 
-
-**Note**: This is an experimental implementation, do not use on production. 
-
 ## Installation
 
     composer require juanparati/podium
@@ -94,7 +91,7 @@ $item->originalValues();
 $item->decodeValue();
 ```
 
-Both values will transverse all the entire tree of values, however you can reference to an specific value.
+Both values will transverse all the values tree, however you can reference to an specific value.
 
 ```php
 // Accessing to the fields
@@ -111,7 +108,7 @@ $item->fields->{'my-custom-field'};
 
 ### Saving items
 
-**Note**: Saving items is still an experimental feature. Use this feature at your own risk.
+⚠️ **Note**: Saving items is still an experimental feature. Use this feature at your own risk.
 
 It's possible to save/update items.
 
@@ -124,7 +121,7 @@ $item->save(silent: false, hook: true); // Will perform silent update calling th
 
 ### Inserting new items
 
-**Note**: Saving items is still an experimental feature. Use this feature at your own risk.
+⚠️ **Note**: Saving items is still an experimental feature. Use this feature at your own risk.
 
 ```php
 $attr = [
