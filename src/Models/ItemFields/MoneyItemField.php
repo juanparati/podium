@@ -42,9 +42,11 @@ class MoneyItemField extends ItemFieldBase
 
     function decodeValue(): array
     {
+        $value = $this->value['value'] ?? null;
+
         return [
             'currency' => $this->value['currency'],
-            'value'    => (float) $this->value['value'],
+            'value'    => $value === null ? null : (float) $value,
         ];
     }
 
@@ -58,7 +60,7 @@ class MoneyItemField extends ItemFieldBase
     public function encodeValue(mixed $value): static
     {
         $this->value['currency'] = strtoupper($value['currency']);
-        $this->value['value'] = (float) $value['value'];
+        $this->value['value'] = $value['value'] === null ? null : (float) $value['value'];
 
         return $this;
     }
