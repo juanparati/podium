@@ -5,7 +5,17 @@ A modern [Podio](https://www.podio.com/) API client compatible with Laravel.
 
 **Note**: This is an experimental implementation, do not use on production. 
 
+## Installation
 
+    composer require juanparati/podium
+
+
+### Laravel setup
+This library can is compatible with Laravel. The following command will deploy the configuration file:
+
+```
+artisan vendor:publish --provider="Juanparati\Podium\Providers\PodiumProvider"
+```
 
 ## How to use it?
 
