@@ -40,41 +40,41 @@ $client->authenticate(
 ### Request a single item
 
 ```php
-    $item = (new \Juanparati\Podium\Requests\ItemRequest($client))->get(itemId: 11111111);
+$item = (new \Juanparati\Podium\Requests\ItemRequest($client))->get(itemId: 11111111);
 ```
 
 ### Request all the items of an App
 
 ```php
-    $models = (new \Juanparati\Podium\Requests\ItemRequest($client))->filter(appId: 987654);
+$models = (new \Juanparati\Podium\Requests\ItemRequest($client))->filter(appId: 987654);
 ```
 
 or alternatively with custom options:
 
 ```php
-    $models =  (new \Juanparati\Podium\Models\ItemFilterModel([], $client))           
-            ->setSortBy('last_edit_on')
-            ->setSortDesc(true)
-            ->setLimit(5);
+$models =  (new \Juanparati\Podium\Models\ItemFilterModel([], $client))           
+        ->setSortBy('last_edit_on')
+        ->setSortDesc(true)
+        ->setLimit(5);
 ```
 
 Read all the items. Note that items() method is a generator, and it will automatically request the additional pages.
 
 
 ```php
-    $itemNum = 0;
+$itemNum = 0;
+
+foreach ($models->items() as $item) {
+    print_r($item->originalValues())
     
-    foreach ($models->items() as $item) {
-        print_r($item->originalValues())
+    // The setLimit options indicate the limit of items per page to the request,
+    // but the generator will automatically request the next page.
+    // In order to limit the number of results we should manually limit the results.
+    if ($itemNum === 10)
+        break;
         
-        // The setLimit options indicate the limit of items per page to the request,
-        // but the generator will automatically request the next page.
-        // In order to limit the number of results we should manually limit the results.
-        if ($itemNum === 10)
-            break;
-            
-        $itemNum++;   
-    }
+    $itemNum++;   
+}
 ```
 
 
