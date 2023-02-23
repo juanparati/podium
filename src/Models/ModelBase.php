@@ -4,6 +4,7 @@ namespace Juanparati\Podium\Models;
 
 use Illuminate\Support\Arr;
 use Juanparati\Podium\Models\Generics\GenericTypeContract;
+use Juanparati\Podium\Models\ItemFields\ItemFieldContract;
 use Juanparati\Podium\Podium;
 use Juanparati\Podium\Requests\RequestBase;
 
@@ -189,6 +190,9 @@ abstract class ModelBase implements ModelContract, GenericTypeContract
 
                 $instance->init();
             }
+
+            if ($instance instanceof ItemFieldContract && ($config = $this->__props['config']['value']?->getProps()))
+                $instance->setConfig($config);
 
             $instance->fillProps($val);
 

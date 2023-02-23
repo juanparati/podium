@@ -71,15 +71,14 @@ class DateItemField extends ItemFieldBase
         return parent::setOptions($options);
     }
 
-
     public function decodeValue(): mixed
     {
         if ($this->value === null)
             return null;
 
         $dates = [
-            'start' => $this->value['start'] ?? null,
-            'end'   => $this->value['end'] ?? null
+            'start' => $this->value['start'] ?? ($this->value[0]['start'] ?? null),
+            'end'   => $this->value['end'] ?? ($this->value[0]['end'] ?? null)
         ];
 
         foreach ($dates as &$date) {

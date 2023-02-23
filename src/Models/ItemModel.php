@@ -86,12 +86,19 @@ class ItemModel extends ModelBase
     {
         // Preload all the fields schema.
         if ($prop === 'fields' && !empty($value) && !empty($this->app['app_id'])) {
-            $fieldsSchema = collect($this->retrieveAppSchema($this->app['app_id'])['fields'] ?? [])
-                ->keyBy('field_id');
+            $fieldsSchemas = $this->retrieveAppSchema($this->app['app_id'])['fields'] ?? [];
 
-            foreach ($value as &$field) {
-                if (isset($fieldsSchema[$field['field_id']]))
-                    $field = array_merge($fieldsSchema[$field['field_id']], $field);
+            if (!empty($fieldsSchemas)) {
+                $fieldValues = collect($value)->keyBy('field_id');
+
+                foreach ($fieldsSchemas as $fieldsSchema) {
+                    $index = $fieldsSchema['field_id'];
+
+                    if (isset($fieldValues[$index]))
+                        $fieldValues[$index] = array_merge($fieldsSchema, $fieldValues[$index]);
+                }
+
+                $value = $fieldValues->values()->toArray();
             }
         }
 
