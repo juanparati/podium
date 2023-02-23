@@ -2,6 +2,7 @@
 
 namespace Juanparati\Podium\Models\ItemFields;
 
+use Illuminate\Support\Arr;
 use Juanparati\Podium\Exceptions\DataIntegrityException;
 
 class MoneyItemField extends ItemFieldBase
@@ -28,6 +29,9 @@ class MoneyItemField extends ItemFieldBase
      */
     public function fillProps(mixed $value): static
     {
+        if (!Arr::isAssoc($value))
+            $value = $value[0];
+
         $value['currency'] = strtoupper($value['currency']);
 
         if (!empty($this->config['settings']['allowed_currencies'])

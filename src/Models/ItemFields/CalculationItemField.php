@@ -9,7 +9,7 @@ class CalculationItemField extends ItemFieldBase
 {
     public function decodeValue(): mixed
     {
-        return $this->value['value'] ?? null;
+        return $this->value['value'] ?? ($this->value[0]['value'] ?? null);
     }
 
     public function encodeValue(mixed $value): static

@@ -7,7 +7,8 @@ class DurationItemField extends ItemFieldBase
 {
     function decodeValue(): ?int
     {
-        return isset($this->value['value']) ? (int) $this->value['value'] : null;
+        $value = $this->value['value'] ?? ($this->value[0]['value'] ?? null);
+        return $value ? (int) $value : null;
     }
 
 

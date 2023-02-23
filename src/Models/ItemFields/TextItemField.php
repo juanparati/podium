@@ -8,7 +8,7 @@ class TextItemField extends ItemFieldBase
 
     public function decodeValue(): ?string
     {
-        $value = $this->value['value'] ?? null;
+        $value = $this->value['value'] ?? ($this->value[0]['value'] ?? null);
 
         if (!$value)
             return null;
